@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS `FastLaps`(
 INSERT INTO `Seasons` (`name`) 
 VALUES ('Temporada 2020-2021');
 
-INSERT INTO `Teams` (`name`. `color`) 
-VALUES ('Mercedes-AMG Petronas Motorsport', 'Plata')
+INSERT INTO `Teams` (`name`, `color`) 
+VALUES ('Mercedes-AMG Petronas Motorsport', 'Plata'),
        ('Scuderia Ferrari', 'Rojo'),
        ('Aston Martin Red Bull Racing', 'Morado'),
        ('Renault F1 Team', 'Amarillo'),
