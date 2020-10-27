@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `Races`(
 CREATE TABLE IF NOT EXISTS `Grids`(
     `idCalendar` INTEGER NOT NULL,
     `idDriver` INTEGER NOT NULL,
-    `idPosition` INTEGER NOT NULL,
+    `idPosition` VARCHAR(4) NOT NULL,
     PRIMARY KEY (`idCalendar`, `idDriver`, `idPosition`),
     FOREIGN KEY (`idCalendar`) REFERENCES Calendars(`id`),
     FOREIGN KEY (`idDriver`) REFERENCES Drivers(`id`),
