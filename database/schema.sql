@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `Drivers`(
 CREATE TABLE IF NOT EXISTS `Circuits`(
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(64) NOT NULL,
-    `country` INTEGER NOT NULL,
+    `country` VARCHAR(64) NOT NULL,
     `distance` INTEGER NOT NULL CHECK(`distance` > 0),
     `turns` INTEGER NOT NULL CHECK(`turns` > 0)
 );
@@ -74,17 +74,17 @@ CREATE TABLE IF NOT EXISTS `FastLaps`(
     FOREIGN KEY (`idDriver`) REFERENCES Drivers(`id`)
 );
 
-INSERT INTO `Seasons` (`name`) 
+INSERT INTO `Seasons` (`name`)
 VALUES ('Temporada 2020-2021');
 
-INSERT INTO `Teams` (`name`, `color`) 
+INSERT INTO `Teams` (`name`, `color`)
 VALUES ('Mercedes-AMG Petronas Motorsport', 'Plata'),
        ('Scuderia Ferrari', 'Rojo'),
        ('Aston Martin Red Bull Racing', 'Morado'),
        ('Renault F1 Team', 'Amarillo'),
-       ('Rich Energy Haas F1 Team', "Negro"),
+       ('Rich Energy Haas F1 Team', 'Negro'),
        ('Mclaren F1 Team', 'Naranja'),
-       ('Spscore Racing Point F1 Team'),
+       ('Spscore Racing Point F1 Team', 'Rosa'),
        ('Alfa Romeo Racing', 'Rojo y Blanco'),
        ('Reb Bull Toto Rosso Honda', 'Azul'),
        ('Rokit Williams Racing', 'Blanco y Azul');
@@ -94,7 +94,7 @@ VALUES ('Melbourne Grand Prix Circuit', 'Australia', 5303, 16),
        ('Bahrain International Circuit', 'Baréin', 5412, 15),
        ('Shanghai International Circuit', 'China', 5451, 16),
        ('Baku City Circuit', 'Azerbaiyán', 6003, 20),
-       ('Circuit De Barcelona-Cataluyna', 4655, 16),
+       ('Circuit De Barcelona-Cataluyna', 'España', 4655, 16),
        ('Circuit De Monaco', 'Mónaco', 3337, 19),
        ('Circuit Gilles-Villeneuve', 'Canadá', 4361, 14),
        ('Circuit Paul Ricard', 'Francia', 5842, 15),
