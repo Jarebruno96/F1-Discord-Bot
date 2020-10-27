@@ -42,8 +42,7 @@ CREATE TABLE IF NOT EXISTS `Calendars`(
 
 CREATE TABLE IF NOT EXISTS `Positions`(
     `id` VARCHAR(4) PRIMARY KEY NOT NULL,
-    `points` INTEGER NOT NULL CHECK(`points` > 0),
-    UNIQUE KEY(`points`)
+    `points` INTEGER NOT NULL CHECK(`points` >= 0)
 );
 
 CREATE TABLE IF NOT EXISTS `Races`(
