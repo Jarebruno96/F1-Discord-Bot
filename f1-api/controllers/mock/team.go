@@ -23,7 +23,7 @@ func (tc TeamController) GetTeams() ([]model.Team, error) {
 }
 
 //GetTeamsDrivers :
-func GetTeamsDrivers() ([]model.Team, error) {
+func (tc TeamController) GetTeamsDrivers() ([]model.Team, error) {
 
 	teamsDrivers := []model.Team{
 		model.Team{
@@ -58,7 +58,7 @@ func GetTeamsDrivers() ([]model.Team, error) {
 }
 
 //GetTeamsInfo :
-func GetTeamsInfo() ([]model.Team, error) {
+func (tc TeamController) GetTeamsInfo() ([]model.Team, error) {
 
 	teamsDrivers := []model.Team{
 		model.Team{

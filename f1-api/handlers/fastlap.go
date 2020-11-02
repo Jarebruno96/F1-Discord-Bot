@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"f1-api/controllers/mock"
+	"f1-api/interfaces"
 	"f1-api/model"
 	"f1-api/response"
 	"net/http"
@@ -14,7 +15,7 @@ func DriverFastLapsHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string][]model.FastLap{}
 	fastLapsController := mock.FastLapController{}
 
-	driversFastLaps, err := fastLapsController.GetDriverFastLaps()
+	driversFastLaps, err := getDriverFastLaps(fastLapsController)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -34,13 +35,17 @@ func DriverFastLapsHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(js)
 }
 
+func getDriverFastLaps(fastLapI interfaces.FastLapI) ([]model.FastLap, error) {
+	return fastLapI.GetDriverFastLaps()
+}
+
 // TeamsFastLapsHandler :
 func TeamsFastLapsHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string][]model.FastLap{}
 	fastLapsController := mock.FastLapController{}
 
-	teamsFastLaps, err := fastLapsController.GetTeamFastLaps()
+	teamsFastLaps, err := getTeamFastLaps(fastLapsController)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -58,4 +63,8 @@ func TeamsFastLapsHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(js)
+}
+
+func getTeamFastLaps(fastLapI interfaces.FastLapI) ([]model.FastLap, error) {
+	return fastLapI.GetTeamFastLaps()
 }

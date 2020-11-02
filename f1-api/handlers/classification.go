@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"f1-api/controllers/mock"
+	"f1-api/interfaces"
 	"f1-api/model"
 	"f1-api/response"
 	"net/http"
@@ -14,7 +15,7 @@ func DriverClassificationHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string][]model.Classification{}
 	classificationContoller := mock.ClassificationController{}
 
-	driversClassification, err := classificationContoller.GetDriversClassification()
+	driversClassification, err := getDriversClassification(classificationContoller)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -34,13 +35,17 @@ func DriverClassificationHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(js)
 }
 
+func getDriversClassification(classificationI interfaces.ClassificationI) ([]model.Classification, error) {
+	return classificationI.GetDriversClassification()
+}
+
 // TeamsClassificationHandler :
 func TeamsClassificationHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string][]model.Classification{}
 	classificationContoller := mock.ClassificationController{}
 
-	teamsClassification, err := classificationContoller.GetTeamsClassification()
+	teamsClassification, err := getTeamsClassification(classificationContoller)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -58,4 +63,8 @@ func TeamsClassificationHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(js)
+}
+
+func getTeamsClassification(classificationI interfaces.ClassificationI) ([]model.Classification, error) {
+	return classificationI.GetTeamsClassification()
 }
