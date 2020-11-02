@@ -1,20 +1,33 @@
 package httpserver
 
 var (
+	// CalendarHTTPPath :
 	CalendarHTTPPath string = "/calendar"
-
-	TeamsHTTPPath    string = "/teams"
-	DriversHTTPPath  string = "/drivers"
-	PointsHTTPPath   string = "/points"
+	// TeamsHTTPPath :
+	TeamsHTTPPath string = "/teams"
+	// DriversHTTPPath :
+	DriversHTTPPath string = "/drivers"
+	// PointsHTTPPath :
+	PointsHTTPPath string = "/points"
+	// CircuitsHTTPPath :
 	CircuitsHTTPPath string = "/circuits"
 
+	// FastLapsDriversHTTPPath :
 	FastLapsDriversHTTPPath string = "/fastlaps/drivers"
-	FastLapsTeamsHTTPPath   string = "/fastlaps/teams"
+	// FastLapsTeamsHTTPPath :
+	FastLapsTeamsHTTPPath string = "/fastlaps/teams"
 
+	// ClassificationDriversHTTPPath :
 	ClassificationDriversHTTPPath string = "/classification/drivers"
-	ClassificationTeamsHTTPPath   string = "/classification/teams"
+	// ClassificationTeamsHTTPPath :
+	ClassificationTeamsHTTPPath string = "/classification/teams"
 
-	RaceGridHTTPPath    string = "/race/grid"
+	// RaceHTTPPath :
+	RaceHTTPPath string = "/race"
+	// RaceGridHTTPPath :
+	RaceGridHTTPPath string = "/race/grid"
+	// RaceResultsHTTPPath :
 	RaceResultsHTTPPath string = "/race/results"
-	RacePointsHTTPPath  string = "/race/points"
+	// RaceFastLapHTTPPath :
+	RaceFastLapHTTPPath string = "/race/fastlap"
 )

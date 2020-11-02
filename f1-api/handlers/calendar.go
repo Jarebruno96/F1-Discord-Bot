@@ -2,26 +2,26 @@ package handlers
 
 import (
 	"encoding/json"
+	"f1-api/controllers/mock"
 	"f1-api/model"
+	"f1-api/response"
 	"net/http"
 )
 
 // CalendarHandler :
 func CalendarHandler(w http.ResponseWriter, r *http.Request) {
 
-	calendar := model.Calendar{
-		Season: "Season 1",
-		Events: []model.Event{
-			model.Event{
-				Day:     "Day 1",
-				Circuit: "Melbourne Grand Prix Circuit",
-			},
-			model.Event{
-				Day:     "Day 2",
-				Circuit: "Bahrain International Circuit",
-			},
-		},
+	payload := map[string]model.Calendar{}
+	calendarController := mock.CalendarController{}
+
+	calendar, err := calendarController.GetCalendar()
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
+
+	payload[response.CalendarKey] = calendar
 
 	js, err := json.Marshal(calendar)
 

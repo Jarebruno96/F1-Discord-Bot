@@ -8,20 +8,20 @@ import (
 	"net/http"
 )
 
-// DriverHandler :
-func DriverHandler(w http.ResponseWriter, r *http.Request) {
+// CircuitHandler :
+func CircuitHandler(w http.ResponseWriter, r *http.Request) {
 
-	payload := map[string][]model.Driver{}
-	driverController := mock.DriverController{}
+	payload := map[string][]model.Circuit{}
+	circuitController := mock.CircuitController{}
 
-	drivers, err := driverController.GetDrivers()
+	circuits, err := circuitController.GetCircuits()
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	payload[response.DriversKey] = drivers
+	payload[response.CircuitsKey] = circuits
 
 	js, err := json.Marshal(payload)
 

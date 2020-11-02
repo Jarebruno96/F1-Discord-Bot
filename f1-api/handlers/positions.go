@@ -8,20 +8,20 @@ import (
 	"net/http"
 )
 
-// DriverHandler :
-func DriverHandler(w http.ResponseWriter, r *http.Request) {
+// PositionsHandler :
+func PositionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	payload := map[string][]model.Driver{}
-	driverController := mock.DriverController{}
+	payload := map[string]model.Positions{}
+	positionsController := mock.PositionsController{}
 
-	drivers, err := driverController.GetDrivers()
+	positions, err := positionsController.GetPositions()
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	payload[response.DriversKey] = drivers
+	payload[response.PositionsKey] = positions
 
 	js, err := json.Marshal(payload)
 
