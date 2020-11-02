@@ -12,8 +12,19 @@ func InitHTTPServer(config Config) {
 
 	log.Print("Starting server...")
 
-	http.HandleFunc(DriversHTTPPath, handlers.DriverHandler)
 	http.HandleFunc(CalendarHTTPPath, handlers.CalendarHandler)
+	http.HandleFunc(TeamsHTTPPath, handlers.TeamHandler)
+	http.HandleFunc(DriversHTTPPath, handlers.DriverHandler)
+	http.HandleFunc(PointsHTTPPath, handlers.PositionsHandler)
+	http.HandleFunc(CircuitsHTTPPath, handlers.CircuitHandler)
+	http.HandleFunc(FastLapsDriversHTTPPath, handlers.DriverFastLapsHandler)
+	http.HandleFunc(FastLapsTeamsHTTPPath, handlers.TeamsFastLapsHandler)
+	http.HandleFunc(ClassificationDriversHTTPPath, handlers.DriverClassificationHandler)
+	http.HandleFunc(ClassificationTeamsHTTPPath, handlers.TeamsClassificationHandler)
+	http.HandleFunc(RaceHTTPPath, handlers.RaceInfoHandler)
+	http.HandleFunc(RaceGridHTTPPath, handlers.RaceGridHandler)
+	http.HandleFunc(RaceResultsHTTPPath, handlers.RaceResultHandler)
+	http.HandleFunc(RaceFastLapHTTPPath, handlers.RaceFastLapDriverHandler)
 
 	// Determine port for HTTP service.
 	port := os.Getenv("PORT")

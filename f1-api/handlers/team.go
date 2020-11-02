@@ -8,20 +8,20 @@ import (
 	"net/http"
 )
 
-// DriverHandler :
-func DriverHandler(w http.ResponseWriter, r *http.Request) {
+// TeamHandler :
+func TeamHandler(w http.ResponseWriter, r *http.Request) {
 
-	payload := map[string][]model.Driver{}
-	driverController := mock.DriverController{}
+	payload := map[string][]model.Team{}
+	teamController := mock.TeamController{}
 
-	drivers, err := driverController.GetDrivers()
+	teams, err := teamController.GetTeams()
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	payload[response.DriversKey] = drivers
+	payload[response.TeamsKey] = teams
 
 	js, err := json.Marshal(payload)
 
