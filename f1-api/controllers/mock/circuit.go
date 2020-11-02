@@ -1,6 +1,8 @@
 package mock
 
-import "f1-api/model"
+import (
+	"f1-api/model"
+)
 
 // CircuitController :
 type CircuitController struct{}

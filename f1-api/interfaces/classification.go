@@ -6,6 +6,6 @@ import (
 
 // ClassificationI :
 type ClassificationI interface {
-	GetDriversClassification() (model.Classification, error)
-	GetTeamsClassification() (model.Classification, error)
+	GetDriversClassification() ([]model.Classification, error)
+	GetTeamsClassification() ([]model.Classification, error)
 }

@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"f1-api/controllers/mock"
+	"f1-api/interfaces"
 	"f1-api/model"
 	"f1-api/response"
 	"net/http"
@@ -14,7 +15,7 @@ func RaceInfoHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string]model.Race{}
 	raceController := mock.RaceController{}
 
-	race, err := raceController.GetRaceInfo()
+	race, err := getRaceInfo(raceController)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -34,13 +35,17 @@ func RaceInfoHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(js)
 }
 
+func getRaceInfo(raceI interfaces.RaceI) (model.Race, error) {
+	return raceI.GetRaceInfo()
+}
+
 // RaceGridHandler :
 func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string]model.RaceGrid{}
 	raceController := mock.RaceController{}
 
-	raceGrid, err := raceController.GetRaceGrid()
+	raceGrid, err := getRaceGrid(raceController)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -60,13 +65,17 @@ func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(js)
 }
 
+func getRaceGrid(raceI interfaces.RaceI) (model.RaceGrid, error) {
+	return raceI.GetRaceGrid()
+}
+
 // RaceResultHandler :
 func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string]model.RaceResult{}
 	raceController := mock.RaceController{}
 
-	raceResult, err := raceController.GetRaceResult()
+	raceResult, err := getRaceResult(raceController)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -84,6 +93,10 @@ func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(js)
+}
+
+func getRaceResult(raceI interfaces.RaceI) (model.RaceResult, error) {
+	return raceI.GetRaceResult()
 }
 
 // RaceFastLapDriverHandler :
@@ -110,4 +123,8 @@ func RaceFastLapDriverHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(js)
+}
+
+func getRaceFastLapDriver(raceI interfaces.RaceI) (model.Driver, error) {
+	return raceI.GetRaceFastLapDriver()
 }

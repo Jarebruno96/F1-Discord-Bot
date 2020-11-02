@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"f1-api/controllers/mock"
+	"f1-api/interfaces"
 	"f1-api/model"
 	"f1-api/response"
 	"net/http"
@@ -14,7 +15,7 @@ func TeamHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string][]model.Team{}
 	teamController := mock.TeamController{}
 
-	teams, err := teamController.GetTeams()
+	teams, err := getTeams(teamController)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -32,4 +33,8 @@ func TeamHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(js)
+}
+
+func getTeams(teamsI interfaces.TeamsI) ([]model.Team, error) {
+	return teamsI.GetTeams()
 }
