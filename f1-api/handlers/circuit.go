@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
-	"f1-api/controllers/mock"
+	"f1-api/controllers/mysql"
 	"f1-api/interfaces"
 	"f1-api/model"
 	"f1-api/response"
@@ -13,7 +13,7 @@ import (
 func CircuitHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string][]model.Circuit{}
-	circuitController := mock.CircuitController{}
+	circuitController := mysql.CircuitController{}
 
 	circuits, err := getCircuits(circuitController)
 
