@@ -2,7 +2,6 @@ package mysql
 
 import (
 	"f1-api/model"
-	"log"
 )
 
 type CircuitController struct {
@@ -24,31 +23,13 @@ func (cc CircuitController) GetCircuits() ([]model.Circuit, error) {
 		return nil, err
 	}
 
-	rows, err := cc.mysqlConnector.Query(query, []interface{}{})
+	rows, err := cc.mysqlConnector.Query(query)
 
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	circuits := []model.Circuit{}
-
-	for rows.Next() {
-
-		var circuit model.Circuit
-
-		err = rows.Scan(&circuit.Name, &circuit.Country, &circuit.Distance, &circuit.Turns)
-
-		if err != nil {
-			log.Println("Can not scan row. ", err)
-			continue
-		}
-
-		log.Println(circuit)
-
-		circuits = append(circuits, circuit)
-
-	}
-
+	circuits, err := ParseRowsToCircuits(rows)
 	return circuits, nil
 }

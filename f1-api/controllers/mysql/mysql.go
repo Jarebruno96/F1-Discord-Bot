@@ -123,7 +123,7 @@ func (mysqlConnector MysqlConnector) ReadQueryFile(queryFilePath string) (string
 
 func (mysqlConnector MysqlConnector) Query(query string, args ...interface{}) (*sql.Rows, error) {
 
-	rows, err := mysqlConnector.DB.Query(query)
+	rows, err := mysqlConnector.DB.Query(query, args...)
 
 	if err != nil {
 		log.Println("Can not query ", query, " . ", err)
