@@ -54,12 +54,6 @@ func (mysqlConnector *MysqlConnector) InitDBConnection() error {
 		log.Println("Can not connect to database: ", err)
 	}
 
-	//mysqlConnector.Query("SET NAMES utf8", nil)
-	//mysqlConnector.Query("SET CHARACTER SET utf8", nil)
-	/*mysqlConnector.Query("SET character_set_connection=utf8", nil)
-	mysqlConnector.Query("SET character_set_client=utf8", nil)
-	mysqlConnector.Query("SET character_set_results=utf8", nil)*/
-
 	return err
 
 }
@@ -105,7 +99,7 @@ func loadConfiguration() (*config.Config, error) {
 
 func createConnection(config *config.Config) (*sql.DB, error) {
 
-	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", //?charset=utf8
+	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
 		config.User,
 		config.Password,
 		config.Host,
