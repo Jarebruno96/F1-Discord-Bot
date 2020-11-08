@@ -23,11 +23,16 @@ sudo apt update
 echo "Installing docker"
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
+echo "Adding current user to docker group"
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+
 echo "Installing mysql/mysql-server:5.7 docker image"
-sudo docker pull mysql/mysql-server:5.7
+docker pull mysql/mysql-server:5.7
 
 echo "Creating instance"
-sudo docker run -p 3306:3306 --name mysql1 -d mysql/mysql-server:5.7
+docker run -p 3306:3306 --name mysql1 -d --restart unless-stopped mysql/mysql-server:5.7
 
 
-sudo docker logs mysql1
+docker logs mysql1 >> mysql-docker.log
