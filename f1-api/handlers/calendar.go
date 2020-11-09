@@ -24,15 +24,14 @@ func CalendarHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.CalendarKey] = calendar
 
-	js, err := json.Marshal(calendar)
+	content, err := json.Marshal(calendar)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getCalendar(calendarI interfaces.CalendarI) (model.Calendar, error) {

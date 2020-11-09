@@ -6,5 +6,5 @@ import (
 
 // PositionsI :
 type PositionsI interface {
-	GetPositions() (model.Positions, error)
+	GetPositions() (*model.Positions, error)
 }

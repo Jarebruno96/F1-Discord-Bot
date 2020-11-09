@@ -25,7 +25,8 @@ var (
 
 	db *sql.DB = nil
 
-	CircuitsQueryFile string = "queries/circuits.sql"
+	CircuitsQueryFile  string = "queries/circuits.sql"
+	PositionsQueryfile string = "queries/positions.sql"
 )
 
 type MysqlConnector struct {

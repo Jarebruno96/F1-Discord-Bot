@@ -24,15 +24,14 @@ func TeamHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.TeamsKey] = teams
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getTeams(teamsI interfaces.TeamsI) ([]model.Team, error) {

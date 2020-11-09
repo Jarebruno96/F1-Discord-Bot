@@ -24,15 +24,14 @@ func RaceInfoHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.RaceInfoKey] = race
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getRaceInfo(raceI interfaces.RaceI) (model.Race, error) {
@@ -54,15 +53,14 @@ func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.RaceGridKey] = raceGrid
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getRaceGrid(raceI interfaces.RaceI) (model.RaceGrid, error) {
@@ -84,15 +82,14 @@ func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.PositionsKey] = raceResult
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getRaceResult(raceI interfaces.RaceI) (model.RaceResult, error) {
@@ -114,15 +111,14 @@ func RaceFastLapDriverHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.RaceFastLapDriverKey] = fastLapDriver
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getRaceFastLapDriver(raceI interfaces.RaceI) (model.Driver, error) {

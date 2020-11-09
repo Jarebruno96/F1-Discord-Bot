@@ -24,15 +24,14 @@ func DriverFastLapsHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.DriversFastLapsKey] = driversFastLaps
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getDriverFastLaps(fastLapI interfaces.FastLapI) ([]model.FastLap, error) {
@@ -54,15 +53,14 @@ func TeamsFastLapsHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.TeamsFastLapsKey] = teamsFastLaps
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getTeamFastLaps(fastLapI interfaces.FastLapI) ([]model.FastLap, error) {

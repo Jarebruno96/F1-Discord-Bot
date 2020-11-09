@@ -24,15 +24,14 @@ func DriverHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.DriversKey] = drivers
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getDrivers(driversI interfaces.DriversI) ([]model.Driver, error) {

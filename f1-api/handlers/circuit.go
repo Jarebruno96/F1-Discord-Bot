@@ -24,17 +24,15 @@ func CircuitHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.CircuitsKey] = circuits
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("charset", "utf-8")
+	SendResponse(w, content)
 
-	w.Write(js)
 }
 
 func getCircuits(circuitI interfaces.CircuitI) ([]model.Circuit, error) {

@@ -28,3 +28,32 @@ func ParseRowsToCircuits(rows *sql.Rows) ([]model.Circuit, error) {
 	return circuits, nil
 
 }
+
+func ParseRowsToPositions(rows *sql.Rows) (model.Positions, error) {
+
+	positions := model.Positions{
+		Position: map[string]int{},
+	}
+
+	for rows.Next() {
+
+		var position string
+		var points int
+
+		err := rows.Scan(&position, &points)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		if _, registered := positions.Position[position]; !registered {
+			positions.Position[position] = points
+		} else {
+			log.Println("Position ", position, " already registered")
+		}
+	}
+
+	return positions, nil
+
+}

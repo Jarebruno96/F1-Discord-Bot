@@ -24,15 +24,14 @@ func DriverClassificationHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.DriversClassificationKey] = driversClassification
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getDriversClassification(classificationI interfaces.ClassificationI) ([]model.Classification, error) {
@@ -54,15 +53,14 @@ func TeamsClassificationHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload[response.TeamsClassificationKey] = teamsClassification
 
-	js, err := json.Marshal(payload)
+	content, err := json.Marshal(payload)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	SendResponse(w, content)
 }
 
 func getTeamsClassification(classificationI interfaces.ClassificationI) ([]model.Classification, error) {

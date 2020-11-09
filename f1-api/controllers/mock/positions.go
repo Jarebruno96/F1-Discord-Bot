@@ -6,7 +6,7 @@ import "f1-api/model"
 type PositionsController struct{}
 
 //GetPositions :
-func (pc PositionsController) GetPositions() (model.Positions, error) {
+func (pc PositionsController) GetPositions() (*model.Positions, error) {
 
 	positions := model.Positions{
 		Position: map[string]int{},
@@ -16,5 +16,5 @@ func (pc PositionsController) GetPositions() (model.Positions, error) {
 	positions.Position["Position2"] = 2
 	positions.Position["PositionDNF"] = 0
 
-	return positions, nil
+	return &positions, nil
 }
