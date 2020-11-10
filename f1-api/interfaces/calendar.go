@@ -6,5 +6,5 @@ import (
 
 //CalendarI :
 type CalendarI interface {
-	GetCalendar() (model.Calendar, error)
+	GetCalendar() (*model.Calendar, error)
 }

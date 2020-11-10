@@ -57,3 +57,27 @@ func ParseRowsToPositions(rows *sql.Rows) (model.Positions, error) {
 	return positions, nil
 
 }
+
+func ParseRowsToCalendar(rows *sql.Rows) (model.Calendar, error) {
+
+	calendar := model.Calendar{
+		Season: "Current season",
+		Events: []model.Event{},
+	}
+
+	for rows.Next() {
+
+		var event model.Event
+
+		err := rows.Scan(&event.Day, &event.Circuit)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		calendar.Events = append(calendar.Events, event)
+	}
+
+	return calendar, nil
+}

@@ -27,6 +27,7 @@ var (
 
 	CircuitsQueryFile  string = "queries/circuits.sql"
 	PositionsQueryfile string = "queries/positions.sql"
+	CalendarQueryfile  string = "queries/calendar.sql"
 )
 
 type MysqlConnector struct {

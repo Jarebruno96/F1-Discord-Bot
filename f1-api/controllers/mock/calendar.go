@@ -6,7 +6,7 @@ import "f1-api/model"
 type CalendarController struct{}
 
 // GetCalendar :
-func (cc CalendarController) GetCalendar() (model.Calendar, error) {
+func (cc CalendarController) GetCalendar() (*model.Calendar, error) {
 
 	calendar := model.Calendar{
 		Season: "Season1",
@@ -26,5 +26,5 @@ func (cc CalendarController) GetCalendar() (model.Calendar, error) {
 		},
 	}
 
-	return calendar, nil
+	return &calendar, nil
 }

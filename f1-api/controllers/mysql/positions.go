@@ -25,6 +25,7 @@ func (pc PositionsController) GetPositions() (*model.Positions, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer rows.Close()
 
 	positions, err := ParseRowsToPositions(rows)
 
