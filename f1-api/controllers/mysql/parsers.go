@@ -81,3 +81,24 @@ func ParseRowsToCalendar(rows *sql.Rows) (model.Calendar, error) {
 
 	return calendar, nil
 }
+
+func ParseRowsToDrivers(rows *sql.Rows) ([]model.Driver, error) {
+
+	drivers := []model.Driver{}
+
+	for rows.Next() {
+
+		var driver model.Driver
+
+		err := rows.Scan(&driver.Name, &driver.Number)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		drivers = append(drivers, driver)
+	}
+
+	return drivers, nil
+}
