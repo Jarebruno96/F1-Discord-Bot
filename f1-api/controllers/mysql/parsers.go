@@ -102,3 +102,95 @@ func ParseRowsToDrivers(rows *sql.Rows) ([]model.Driver, error) {
 
 	return drivers, nil
 }
+
+func ParseRowsToTeams(rows *sql.Rows) ([]model.Team, error) {
+
+	teams := []model.Team{}
+
+	for rows.Next() {
+
+		var team model.Team
+
+		err := rows.Scan(&team.Name, &team.Color)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		teams = append(teams, team)
+	}
+
+	return teams, nil
+}
+
+func ParseRowsToTeamsDrivers(rows *sql.Rows) ([]model.Team, error) {
+
+	teamsProcessed := map[int]model.Team{}
+
+	for rows.Next() {
+
+		var teamID int
+		var team model.Team
+		var driver model.Driver
+
+		err := rows.Scan(&teamID, &team.Name, &driver.Name, &driver.Number)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		if teamProcessed, processed := teamsProcessed[teamID]; !processed {
+			team.Drivers = []model.Driver{driver}
+			teamsProcessed[teamID] = team
+		} else {
+			team.Drivers = append(team.Drivers, driver)
+			teamsProcessed[teamID] = teamProcessed
+		}
+	}
+
+	teams := []model.Team{}
+
+	for _, team := range teamsProcessed {
+		teams = append(teams, team)
+
+	}
+
+	return teams, nil
+}
+
+func ParseRowsToTeamsInfo(rows *sql.Rows) ([]model.Team, error) {
+
+	teamsProcessed := map[int]model.Team{}
+
+	for rows.Next() {
+
+		var teamID int
+		var team model.Team
+		var driver model.Driver
+
+		err := rows.Scan(&teamID, &team.Name, &team.Color, &driver.Name, &driver.Number)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		if teamProcessed, processed := teamsProcessed[teamID]; !processed {
+			team.Drivers = []model.Driver{driver}
+			teamsProcessed[teamID] = team
+		} else {
+			teamProcessed.Drivers = append(team.Drivers, driver)
+			teamsProcessed[teamID] = teamProcessed
+		}
+	}
+
+	teams := []model.Team{}
+
+	for _, team := range teamsProcessed {
+		teams = append(teams, team)
+	}
+
+	return teams, nil
+}

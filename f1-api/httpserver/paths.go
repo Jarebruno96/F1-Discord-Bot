@@ -5,6 +5,10 @@ var (
 	CalendarHTTPPath string = "/calendar"
 	// TeamsHTTPPath :
 	TeamsHTTPPath string = "/teams"
+	// TeamInfoHTTPPath :
+	TeamInfoHTTPPath string = "/teams/info"
+	// TeamDriversHTTPPath :
+	TeamDriversHTTPPath string = "/teams/drivers"
 	// DriversHTTPPath :
 	DriversHTTPPath string = "/drivers"
 	// PointsHTTPPath :

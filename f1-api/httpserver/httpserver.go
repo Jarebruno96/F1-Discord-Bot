@@ -14,6 +14,8 @@ func InitHTTPServer(config Config) {
 
 	http.HandleFunc(CalendarHTTPPath, handlers.CalendarHandler)
 	http.HandleFunc(TeamsHTTPPath, handlers.TeamHandler)
+	http.HandleFunc(TeamInfoHTTPPath, handlers.TeamInfoHandler)
+	http.HandleFunc(TeamDriversHTTPPath, handlers.TeamDriversHandler)
 	http.HandleFunc(DriversHTTPPath, handlers.DriverHandler)
 	http.HandleFunc(PointsHTTPPath, handlers.PositionsHandler)
 	http.HandleFunc(CircuitsHTTPPath, handlers.CircuitHandler)

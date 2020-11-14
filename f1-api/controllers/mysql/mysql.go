@@ -25,10 +25,13 @@ var (
 
 	db *sql.DB = nil
 
-	CircuitsQueryFile  string = "queries/circuits.sql"
-	PositionsQueryfile string = "queries/positions.sql"
-	CalendarQueryfile  string = "queries/calendar.sql"
-	DriversQueryfile   string = "queries/drivers.sql"
+	CircuitsQueryFile     string = "queries/circuits.sql"
+	PositionsQueryfile    string = "queries/positions.sql"
+	CalendarQueryfile     string = "queries/calendar.sql"
+	DriversQueryfile      string = "queries/drivers.sql"
+	TeamsQueryfile        string = "queries/teams/teams.sql"
+	TeamsDriversQueryfile string = "queries/teams/teamsdrivers.sql"
+	TeamsInfoQueryfile    string = "queries/teams/teamsinfo.sql"
 )
 
 type MysqlConnector struct {
