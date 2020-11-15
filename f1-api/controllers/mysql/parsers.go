@@ -194,3 +194,120 @@ func ParseRowsToTeamsInfo(rows *sql.Rows) ([]model.Team, error) {
 
 	return teams, nil
 }
+
+func ParseRowsToRaceInfo(rows *sql.Rows) (model.Race, error) {
+
+	race := model.Race{
+		Grid: model.RaceGrid{
+			Grid: map[string]model.Driver{},
+		},
+		Result: model.RaceResult{
+			Result: map[string]model.Driver{},
+		},
+	}
+
+	for rows.Next() {
+
+		var gridPosition string
+		var resultPosition string
+		var driver model.Driver
+		var circuitName string
+		var isFastDriver bool
+
+		err := rows.Scan(&circuitName, &driver.Name, &gridPosition, &resultPosition, &isFastDriver)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		if circuitName == "Baku City Circuit" {
+			race.Grid.Grid[gridPosition] = driver
+			race.Result.Result[resultPosition] = driver
+
+			if isFastDriver {
+				race.FastLapDriver = driver
+			}
+		}
+
+	}
+
+	return race, nil
+}
+
+func ParseRowsToRaceGrid(rows *sql.Rows) (model.RaceGrid, error) {
+
+	grid := model.RaceGrid{
+		Grid: make(map[string]model.Driver),
+	}
+
+	for rows.Next() {
+
+		var driver model.Driver
+		var position string
+		var circuit string
+
+		err := rows.Scan(&circuit, &driver.Name, &position)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		if circuit == "Baku City Circuit" {
+			grid.Grid[position] = driver
+		}
+
+	}
+
+	return grid, nil
+}
+
+func ParseRowsToRaceResult(rows *sql.Rows) (model.RaceResult, error) {
+	result := model.RaceResult{
+		Result: make(map[string]model.Driver),
+	}
+
+	for rows.Next() {
+
+		var driver model.Driver
+		var position string
+		var circuit string
+
+		err := rows.Scan(&circuit, &driver.Name, &position)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		if circuit == "Baku City Circuit" {
+			result.Result[position] = driver
+		}
+
+	}
+
+	return result, nil
+}
+
+func ParseRowsToRaceFastLapDriver(rows *sql.Rows) (model.Driver, error) {
+
+	var driver model.Driver
+
+	for rows.Next() {
+
+		var circuit string
+		err := rows.Scan(&circuit, &driver.Name, &driver.Number)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		if circuit == "Baku City Circuit" {
+			break
+		}
+	}
+
+	return driver, nil
+}

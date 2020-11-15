@@ -32,6 +32,10 @@ var (
 	TeamsQueryfile        string = "queries/teams/teams.sql"
 	TeamsDriversQueryfile string = "queries/teams/teamsdrivers.sql"
 	TeamsInfoQueryfile    string = "queries/teams/teamsinfo.sql"
+	RaceInfoQueryFile     string = "queries/race/raceinfo.sql"
+	RaceGridQueryFile     string = "queries/race/racegrid.sql"
+	RaceResultQueryFile   string = "queries/race/raceresult.sql"
+	RaceFastLapDriverFile string = "queries/race/racefastlapdriver.sql"
 )
 
 type MysqlConnector struct {

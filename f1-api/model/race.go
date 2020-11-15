@@ -2,12 +2,12 @@ package model
 
 //RaceGrid :
 type RaceGrid struct {
-	Grid map[string]string
+	Grid map[string]Driver
 }
 
 //RaceResult :
 type RaceResult struct {
-	Result map[string]string
+	Result map[string]Driver
 }
 
 //Race :
