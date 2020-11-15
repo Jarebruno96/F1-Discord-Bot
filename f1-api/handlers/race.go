@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"f1-api/controllers/mock"
 	"f1-api/controllers/mysql"
 	"f1-api/interfaces"
 	"f1-api/model"
@@ -43,7 +42,7 @@ func getRaceInfo(raceI interfaces.RaceI) (model.Race, error) {
 func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string]model.RaceGrid{}
-	raceController := mock.RaceController{}
+	raceController := mysql.RaceController{}
 
 	raceGrid, err := getRaceGrid(raceController)
 
@@ -72,7 +71,7 @@ func getRaceGrid(raceI interfaces.RaceI) (model.RaceGrid, error) {
 func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string]model.RaceResult{}
-	raceController := mock.RaceController{}
+	raceController := mysql.RaceController{}
 
 	raceResult, err := getRaceResult(raceController)
 
