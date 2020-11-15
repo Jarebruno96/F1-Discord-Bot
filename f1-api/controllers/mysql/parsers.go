@@ -311,3 +311,53 @@ func ParseRowsToRaceFastLapDriver(rows *sql.Rows) (model.Driver, error) {
 
 	return driver, nil
 }
+
+func ParseRowsToFastLapsDrivers(rows *sql.Rows) ([]model.FastLap, error) {
+
+	fastLaps := []model.FastLap{}
+
+	for rows.Next() {
+
+		var circuit model.Circuit
+		var driver model.Driver
+
+		err := rows.Scan(&circuit.Name, &driver.Name)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		fastLaps = append(fastLaps, model.FastLap{
+			Circuit: circuit,
+			Driver:  driver,
+		})
+
+	}
+	return fastLaps, nil
+}
+
+func ParseRowsToFastLapsTeams(rows *sql.Rows) ([]model.FastLap, error) {
+
+	fastLaps := []model.FastLap{}
+
+	for rows.Next() {
+
+		var circuit model.Circuit
+		var team model.Team
+
+		err := rows.Scan(&circuit.Name, &team.Name)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		fastLaps = append(fastLaps, model.FastLap{
+			Circuit: circuit,
+			Team:    team,
+		})
+
+	}
+	return fastLaps, nil
+}

@@ -36,6 +36,8 @@ var (
 	RaceGridQueryFile     string = "queries/race/racegrid.sql"
 	RaceResultQueryFile   string = "queries/race/raceresult.sql"
 	RaceFastLapDriverFile string = "queries/race/racefastlapdriver.sql"
+	FastLapDriverFile     string = "queries/fastlaps/fastlapsdrivers.sql"
+	FastLapTeamsFile      string = "queries/fastlaps/fastlapsteams.sql"
 )
 
 type MysqlConnector struct {
