@@ -361,3 +361,47 @@ func ParseRowsToFastLapsTeams(rows *sql.Rows) ([]model.FastLap, error) {
 	}
 	return fastLaps, nil
 }
+
+func ParseRowsToDriversClassification(rows *sql.Rows) ([]model.Classification, error) {
+
+	var driverClassification []model.Classification
+
+	for rows.Next() {
+
+		var driverPosition model.Classification
+
+		err := rows.Scan(&driverPosition.Name, &driverPosition.Points)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		driverClassification = append(driverClassification, driverPosition)
+
+	}
+
+	return driverClassification, nil
+}
+
+func ParseRowsToTeamsClassification(rows *sql.Rows) ([]model.Classification, error) {
+
+	var teamClassification []model.Classification
+
+	for rows.Next() {
+
+		var teamPosition model.Classification
+
+		err := rows.Scan(&teamPosition.Name, &teamPosition.Points)
+
+		if err != nil {
+			log.Println("Can not scan row. ", err)
+			continue
+		}
+
+		teamClassification = append(teamClassification, teamPosition)
+
+	}
+
+	return teamClassification, nil
+}

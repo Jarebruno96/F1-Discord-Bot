@@ -25,19 +25,21 @@ var (
 
 	db *sql.DB = nil
 
-	CircuitsQueryFile     string = "queries/circuits.sql"
-	PositionsQueryfile    string = "queries/positions.sql"
-	CalendarQueryfile     string = "queries/calendar.sql"
-	DriversQueryfile      string = "queries/drivers.sql"
-	TeamsQueryfile        string = "queries/teams/teams.sql"
-	TeamsDriversQueryfile string = "queries/teams/teamsdrivers.sql"
-	TeamsInfoQueryfile    string = "queries/teams/teamsinfo.sql"
-	RaceInfoQueryFile     string = "queries/race/raceinfo.sql"
-	RaceGridQueryFile     string = "queries/race/racegrid.sql"
-	RaceResultQueryFile   string = "queries/race/raceresult.sql"
-	RaceFastLapDriverFile string = "queries/race/racefastlapdriver.sql"
-	FastLapDriverFile     string = "queries/fastlaps/fastlapsdrivers.sql"
-	FastLapTeamsFile      string = "queries/fastlaps/fastlapsteams.sql"
+	CircuitsQueryFile         string = "queries/circuits.sql"
+	PositionsQueryfile        string = "queries/positions.sql"
+	CalendarQueryfile         string = "queries/calendar.sql"
+	DriversQueryfile          string = "queries/drivers.sql"
+	TeamsQueryfile            string = "queries/teams/teams.sql"
+	TeamsDriversQueryfile     string = "queries/teams/teamsdrivers.sql"
+	TeamsInfoQueryfile        string = "queries/teams/teamsinfo.sql"
+	RaceInfoQueryFile         string = "queries/race/raceinfo.sql"
+	RaceGridQueryFile         string = "queries/race/racegrid.sql"
+	RaceResultQueryFile       string = "queries/race/raceresult.sql"
+	RaceFastLapDriverFile     string = "queries/race/racefastlapdriver.sql"
+	FastLapDriverFile         string = "queries/fastlaps/fastlapsdrivers.sql"
+	FastLapTeamsFile          string = "queries/fastlaps/fastlapsteams.sql"
+	ClassificationTeamsFile   string = "queries/classification/classificationteams.sql"
+	ClassificationDriversFile string = "queries/classification/classificationdrivers.sql"
 )
 
 type MysqlConnector struct {

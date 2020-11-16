@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
-	"f1-api/controllers/mock"
+	"f1-api/controllers/mysql"
 	"f1-api/interfaces"
 	"f1-api/model"
 	"f1-api/response"
@@ -13,7 +13,7 @@ import (
 func DriverClassificationHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string][]model.Classification{}
-	classificationContoller := mock.ClassificationController{}
+	classificationContoller := mysql.ClassificationController{}
 
 	driversClassification, err := getDriversClassification(classificationContoller)
 
@@ -42,7 +42,7 @@ func getDriversClassification(classificationI interfaces.ClassificationI) ([]mod
 func TeamsClassificationHandler(w http.ResponseWriter, r *http.Request) {
 
 	payload := map[string][]model.Classification{}
-	classificationContoller := mock.ClassificationController{}
+	classificationContoller := mysql.ClassificationController{}
 
 	teamsClassification, err := getTeamsClassification(classificationContoller)
 
