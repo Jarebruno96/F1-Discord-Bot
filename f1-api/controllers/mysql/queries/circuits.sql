@@ -1,0 +1,1 @@
+SELECT `name`, `country`, `distance`, `turns` FROM `Circuits`
