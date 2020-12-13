@@ -1,0 +1,16 @@
+{
+    "token" : "",
+    "channelID" : "",
+    "defaultPresence" : { 
+        "activity": { 
+            "name": "Campeonato Aldebarán de F1",
+            "type": "WATCHING"
+        }, 
+        "status": "online" 
+    },
+    "messages" : {
+        "welcome" : "Hola drivers, ¿Habéis practicado?",
+        "bye1" : "Ya saben, si parpadean se lo pierden, porque esto es la F1 en estado puro\nNos vemos el próximo fin de semana",
+        "race": "Por fin, es día de carrera, y el cuerpo lo sabe"
+    }
+}
