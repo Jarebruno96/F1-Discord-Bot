@@ -198,10 +198,10 @@ func ParseRowsToTeamsInfo(rows *sql.Rows) ([]model.Team, error) {
 func ParseRowsToRaceInfo(rows *sql.Rows) (model.Race, error) {
 
 	race := model.Race{
-		Grid: model.RaceGrid{
+		Grid: &model.RaceGrid{
 			Grid: map[string]model.Driver{},
 		},
-		Result: model.RaceResult{
+		Result: &model.RaceResult{
 			Result: map[string]model.Driver{},
 		},
 	}
@@ -226,7 +226,7 @@ func ParseRowsToRaceInfo(rows *sql.Rows) (model.Race, error) {
 			race.Result.Result[resultPosition] = driver
 
 			if isFastDriver {
-				race.FastLapDriver = driver
+				race.FastLapDriver = &driver
 			}
 		}
 
@@ -329,8 +329,8 @@ func ParseRowsToFastLapsDrivers(rows *sql.Rows) ([]model.FastLap, error) {
 		}
 
 		fastLaps = append(fastLaps, model.FastLap{
-			Circuit: circuit,
-			Driver:  driver,
+			Circuit: &circuit,
+			Driver:  &driver,
 		})
 
 	}
@@ -354,8 +354,8 @@ func ParseRowsToFastLapsTeams(rows *sql.Rows) ([]model.FastLap, error) {
 		}
 
 		fastLaps = append(fastLaps, model.FastLap{
-			Circuit: circuit,
-			Team:    team,
+			Circuit: &circuit,
+			Team:    &team,
 		})
 
 	}
