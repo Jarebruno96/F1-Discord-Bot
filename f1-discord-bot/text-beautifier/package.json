@@ -1,0 +1,14 @@
+{
+  "name": "text-beautifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Arellano",
+  "license": "ISC",
+  "dependencies": {
+    "table": "^6.0.4"
+  }
+}

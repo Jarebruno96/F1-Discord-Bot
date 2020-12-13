@@ -61,7 +61,7 @@ class DiscordClient extends discord.Client{
         let command = args.shift()
 
         if (botCmds.isBotCommand(command)){
-            botCmds.execCommand(command, args)
+            botCmds.execCommand(command, args, this)
         }
     }
 }
