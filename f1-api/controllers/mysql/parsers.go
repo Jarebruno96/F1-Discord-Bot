@@ -145,7 +145,7 @@ func ParseRowsToTeamsDrivers(rows *sql.Rows) ([]model.Team, error) {
 			team.Drivers = []model.Driver{driver}
 			teamsProcessed[teamID] = team
 		} else {
-			team.Drivers = append(team.Drivers, driver)
+			teamProcessed.Drivers = append(teamProcessed.Drivers, driver)
 			teamsProcessed[teamID] = teamProcessed
 		}
 	}
@@ -181,7 +181,7 @@ func ParseRowsToTeamsInfo(rows *sql.Rows) ([]model.Team, error) {
 			team.Drivers = []model.Driver{driver}
 			teamsProcessed[teamID] = team
 		} else {
-			teamProcessed.Drivers = append(team.Drivers, driver)
+			teamProcessed.Drivers = append(teamProcessed.Drivers, driver)
 			teamsProcessed[teamID] = teamProcessed
 		}
 	}
