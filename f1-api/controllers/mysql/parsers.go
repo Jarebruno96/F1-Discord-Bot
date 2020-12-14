@@ -221,13 +221,11 @@ func ParseRowsToRaceInfo(rows *sql.Rows) (model.Race, error) {
 			continue
 		}
 
-		if circuitName == "Baku City Circuit" {
-			race.Grid.Grid[gridPosition] = driver
-			race.Result.Result[resultPosition] = driver
+		race.Grid.Grid[gridPosition] = driver
+		race.Result.Result[resultPosition] = driver
 
-			if isFastDriver {
-				race.FastLapDriver = &driver
-			}
+		if isFastDriver {
+			race.FastLapDriver = &driver
 		}
 
 	}
@@ -254,9 +252,7 @@ func ParseRowsToRaceGrid(rows *sql.Rows) (model.RaceGrid, error) {
 			continue
 		}
 
-		if circuit == "Baku City Circuit" {
-			grid.Grid[position] = driver
-		}
+		grid.Grid[position] = driver
 
 	}
 
@@ -281,9 +277,7 @@ func ParseRowsToRaceResult(rows *sql.Rows) (model.RaceResult, error) {
 			continue
 		}
 
-		if circuit == "Baku City Circuit" {
-			result.Result[position] = driver
-		}
+		result.Result[position] = driver
 
 	}
 
@@ -302,10 +296,6 @@ func ParseRowsToRaceFastLapDriver(rows *sql.Rows) (model.Driver, error) {
 		if err != nil {
 			log.Println("Can not scan row. ", err)
 			continue
-		}
-
-		if circuit == "Baku City Circuit" {
-			break
 		}
 	}
 

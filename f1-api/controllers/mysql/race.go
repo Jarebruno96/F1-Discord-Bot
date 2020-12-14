@@ -9,7 +9,7 @@ type RaceController struct {
 	mysqlConnector MysqlConnector
 }
 
-func (rc RaceController) GetRaceInfo() (model.Race, error) {
+func (rc RaceController) GetRaceInfo(raceName string) (model.Race, error) {
 
 	err := rc.mysqlConnector.InitDBConnection()
 
@@ -23,7 +23,7 @@ func (rc RaceController) GetRaceInfo() (model.Race, error) {
 		return model.Race{}, err
 	}
 
-	rows, err := rc.mysqlConnector.Query(query)
+	rows, err := rc.mysqlConnector.Query(query, "%"+raceName+"%", "%"+raceName+"%")
 
 	if err != nil {
 		return model.Race{}, err
@@ -39,7 +39,7 @@ func (rc RaceController) GetRaceInfo() (model.Race, error) {
 	return race, nil
 }
 
-func (rc RaceController) GetRaceGrid() (model.RaceGrid, error) {
+func (rc RaceController) GetRaceGrid(raceName string) (model.RaceGrid, error) {
 
 	err := rc.mysqlConnector.InitDBConnection()
 
@@ -53,7 +53,7 @@ func (rc RaceController) GetRaceGrid() (model.RaceGrid, error) {
 		return model.RaceGrid{}, err
 	}
 
-	rows, err := rc.mysqlConnector.Query(query)
+	rows, err := rc.mysqlConnector.Query(query, "%"+raceName+"%", "%"+raceName+"%")
 
 	if err != nil {
 		return model.RaceGrid{}, err
@@ -69,7 +69,7 @@ func (rc RaceController) GetRaceGrid() (model.RaceGrid, error) {
 	return grid, nil
 }
 
-func (rc RaceController) GetRaceResult() (model.RaceResult, error) {
+func (rc RaceController) GetRaceResult(raceName string) (model.RaceResult, error) {
 
 	err := rc.mysqlConnector.InitDBConnection()
 
@@ -83,7 +83,7 @@ func (rc RaceController) GetRaceResult() (model.RaceResult, error) {
 		return model.RaceResult{}, err
 	}
 
-	rows, err := rc.mysqlConnector.Query(query)
+	rows, err := rc.mysqlConnector.Query(query, "%"+raceName+"%", "%"+raceName+"%")
 
 	if err != nil {
 		return model.RaceResult{}, err
@@ -98,7 +98,7 @@ func (rc RaceController) GetRaceResult() (model.RaceResult, error) {
 
 	return resutl, nil
 }
-func (rc RaceController) GetRaceFastLapDriver() (model.Driver, error) {
+func (rc RaceController) GetRaceFastLapDriver(raceName string) (model.Driver, error) {
 
 	err := rc.mysqlConnector.InitDBConnection()
 
@@ -112,7 +112,7 @@ func (rc RaceController) GetRaceFastLapDriver() (model.Driver, error) {
 		return model.Driver{}, err
 	}
 
-	rows, err := rc.mysqlConnector.Query(query)
+	rows, err := rc.mysqlConnector.Query(query, "%"+raceName+"%", "%"+raceName+"%")
 
 	if err != nil {
 		return model.Driver{}, err

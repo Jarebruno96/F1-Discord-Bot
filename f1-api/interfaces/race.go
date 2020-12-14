@@ -6,8 +6,8 @@ import (
 
 //RaceI :
 type RaceI interface {
-	GetRaceInfo() (model.Race, error)
-	GetRaceGrid() (model.RaceGrid, error)
-	GetRaceResult() (model.RaceResult, error)
-	GetRaceFastLapDriver() (model.Driver, error)
+	GetRaceInfo(raceName string) (model.Race, error)
+	GetRaceGrid(raceName string) (model.RaceGrid, error)
+	GetRaceResult(raceName string) (model.RaceResult, error)
+	GetRaceFastLapDriver(raceName string) (model.Driver, error)
 }

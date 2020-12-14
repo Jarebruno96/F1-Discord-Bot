@@ -7,4 +7,5 @@ FROM `Races`,
      `Calendars`
 WHERE `Races`.`idCalendar` = `Calendars`.`id` AND
 	  `Calendars`.`idCircuit` = `Circuits`.`id` AND
-      `Drivers`.`id` = `Races`.`idDriver`
+      `Drivers`.`id` = `Races`.`idDriver` AND
+	  (`Circuits`.`name` LIKE ? OR `Circuits`.`Country` LIKE ?)

@@ -30,6 +30,7 @@ FROM
          `Calendars`
 WHERE `raceInfo`.`idCalendar` = `Calendars`.`id` AND
 	  `Calendars`.`idCircuit` = `Circuits`.`id` AND
-      `Drivers`.`id` = `raceInfo`.`idDriver`;
+      `Drivers`.`id` = `raceInfo`.`idDriver` AND
+	  (`Circuits`.`name` LIKE ? OR `Circuits`.`Country` LIKE ?)
          
 		 
