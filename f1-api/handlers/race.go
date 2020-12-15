@@ -15,14 +15,21 @@ func RaceInfoHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string]model.Race{}
 	raceController := mysql.RaceController{}
 
-	race, err := getRaceInfo(raceController)
+	raceName := r.URL.Query().Get(RaceParameterKey)
+
+	if raceName == "" {
+		http.Error(w, "Race parameter is not specified", http.StatusBadRequest)
+		return
+	}
+
+	race, err := getRaceInfo(raceController, raceName)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	payload[response.RaceInfoKey] = race
+	payload[response.RaceInfoKey] = *race
 
 	content, err := json.Marshal(payload)
 
@@ -34,8 +41,8 @@ func RaceInfoHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceInfo(raceI interfaces.RaceI) (model.Race, error) {
-	return raceI.GetRaceInfo()
+func getRaceInfo(raceI interfaces.RaceI, raceName string) (*model.Race, error) {
+	return raceI.GetRaceInfo(raceName)
 }
 
 // RaceGridHandler :
@@ -44,14 +51,21 @@ func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string]model.RaceGrid{}
 	raceController := mysql.RaceController{}
 
-	raceGrid, err := getRaceGrid(raceController)
+	raceName := r.URL.Query().Get(RaceParameterKey)
+
+	if raceName == "" {
+		http.Error(w, "Race parameter is not specified", http.StatusBadRequest)
+		return
+	}
+
+	raceGrid, err := getRaceGrid(raceController, raceName)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	payload[response.RaceGridKey] = raceGrid
+	payload[response.RaceGridKey] = *raceGrid
 
 	content, err := json.Marshal(payload)
 
@@ -63,8 +77,8 @@ func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceGrid(raceI interfaces.RaceI) (model.RaceGrid, error) {
-	return raceI.GetRaceGrid()
+func getRaceGrid(raceI interfaces.RaceI, raceName string) (*model.RaceGrid, error) {
+	return raceI.GetRaceGrid(raceName)
 }
 
 // RaceResultHandler :
@@ -73,14 +87,21 @@ func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string]model.RaceResult{}
 	raceController := mysql.RaceController{}
 
-	raceResult, err := getRaceResult(raceController)
+	raceName := r.URL.Query().Get(RaceParameterKey)
+
+	if raceName == "" {
+		http.Error(w, "Race parameter is not specified", http.StatusBadRequest)
+		return
+	}
+
+	raceResult, err := getRaceResult(raceController, raceName)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	payload[response.PositionsKey] = raceResult
+	payload[response.PositionsKey] = *raceResult
 
 	content, err := json.Marshal(payload)
 
@@ -92,8 +113,8 @@ func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceResult(raceI interfaces.RaceI) (model.RaceResult, error) {
-	return raceI.GetRaceResult()
+func getRaceResult(raceI interfaces.RaceI, raceName string) (*model.RaceResult, error) {
+	return raceI.GetRaceResult(raceName)
 }
 
 // RaceFastLapDriverHandler :
@@ -102,14 +123,21 @@ func RaceFastLapDriverHandler(w http.ResponseWriter, r *http.Request) {
 	payload := map[string]model.Driver{}
 	raceController := mysql.RaceController{}
 
-	fastLapDriver, err := raceController.GetRaceFastLapDriver()
+	raceName := r.URL.Query().Get(RaceParameterKey)
+
+	if raceName == "" {
+		http.Error(w, "Race parameter is not specified", http.StatusBadRequest)
+		return
+	}
+
+	fastLapDriver, err := raceController.GetRaceFastLapDriver(raceName)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	payload[response.RaceFastLapDriverKey] = fastLapDriver
+	payload[response.RaceFastLapDriverKey] = *fastLapDriver
 
 	content, err := json.Marshal(payload)
 
@@ -121,6 +149,6 @@ func RaceFastLapDriverHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceFastLapDriver(raceI interfaces.RaceI) (model.Driver, error) {
-	return raceI.GetRaceFastLapDriver()
+func getRaceFastLapDriver(raceI interfaces.RaceI, raceName string) (*model.Driver, error) {
+	return raceI.GetRaceFastLapDriver(raceName)
 }

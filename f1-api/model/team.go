@@ -1,8 +1,8 @@
 package model
 
-// Driver :
+// Team :
 type Team struct {
-	Name    string
-	Color   string
-	Drivers []Driver
+	Name    string   `json:"Name,omitempty"`
+	Color   string   `json:"Color,omitempty"`
+	Drivers []Driver `json:"Drivers,omitempty"`
 }
