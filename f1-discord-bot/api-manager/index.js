@@ -62,20 +62,20 @@ function getTeamsFastlaps(){
     return fastlapManager.getTeamsFastlaps(options)
 }
 
-function getRace(){
-    return raceManager.getRace(options)
+function getRace(raceName){
+    return raceManager.getRace(options, raceName)
 }
 
-function getRaceGrid(){
-    return raceManager.getRaceGrid(options)
+function getRaceGrid(raceName){
+    return raceManager.getRaceGrid(options, raceName)
 }
 
-function getRaceResult(){
-    return raceManager.getRaceResult(options)
+function getRaceResult(raceName){
+    return raceManager.getRaceResult(options, raceName)
 }
 
-function getRaceFastlapDriver(){
-    return raceManager.getRaceFastlapDriver(options)
+function getRaceFastlapDriver(raceName){
+    return raceManager.getRaceFastlapDriver(options, raceName)
 }
 
 module.exports = {

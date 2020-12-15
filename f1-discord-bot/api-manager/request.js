@@ -28,6 +28,26 @@ async function makeAsyncRequest(requestOptions){
     })
 }
 
+function buildPathWithParameters(basePath, parameters = {}){
+    
+    let urlParamerts = ""
+    let first = true
+
+    for(let key in parameters){
+        if(first){
+            first = false
+            urlParamerts += ("?"+key+"="+parameters[key])
+            continue
+        }
+        
+        urlParamerts += (key+"="+parameters[key])
+        
+    }
+
+    return basePath + urlParamerts
+}
+
 module.exports = {
-    makeAsyncRequest : makeAsyncRequest
+    makeAsyncRequest : makeAsyncRequest,
+    buildPathWithParameters: buildPathWithParameters
 }

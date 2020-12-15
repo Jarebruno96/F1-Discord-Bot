@@ -13,6 +13,7 @@ const race = "/race"
 const raceResult = "/race/results"
 const raceGrid = "/race/grid"
 const raceFastLap = "/race/fastlap"
+const raceUrlParameter = "race"
 
 module.exports = {
     circuits : circuits,
@@ -29,5 +30,6 @@ module.exports = {
     race: race,
     raceResult: raceResult,
     raceGrid: raceGrid,
-    raceFastLap: raceFastLap
+    raceFastLap: raceFastLap,
+    raceUrlParameter: raceUrlParameter
 }

@@ -3,19 +3,23 @@ const apiResources = require("./api-resources.js")
 const race = require('./../model/race.js')
 const driver = require("./../model/driver.js")
 
-function getRace(serverOptions){
+function getRace(serverOptions, raceName){
 
     console.log(`Getting race from https://${serverOptions["hostname"]}:${serverOptions["port"]}${apiResources.race}`)
+    
+    let urlParameters = {}
+    urlParameters[apiResources.raceUrlParameter] = raceName
 
     let requestOptions = {
         hostname: serverOptions["hostname"],
         port: serverOptions["port"],
-        path: apiResources.race,
+        path: request.buildPathWithParameters(apiResources.race, urlParameters),
         agent: false,
         method: "GET",
         headers: {
             'Accept': 'application/json'
-        }
+        },
+
     }
 
     //return request.makeAsyncRequest(requestOptions)
@@ -33,14 +37,17 @@ function getRace(serverOptions){
      
 }
 
-function getRaceGrid(serverOptions){
+function getRaceGrid(serverOptions, raceName){
 
     console.log(`Getting race from https://${serverOptions["hostname"]}:${serverOptions["port"]}${apiResources.raceGrid}`)
+    
+    let urlParameters = {}
+    urlParameters[apiResources.raceUrlParameter] = raceName
 
     let requestOptions = {
         hostname: serverOptions["hostname"],
         port: serverOptions["port"],
-        path: apiResources.raceGrid,
+        path: request.buildPathWithParameters(apiResources.raceGrid, urlParameters),
         agent: false,
         method: "GET",
         headers: {
@@ -53,7 +60,7 @@ function getRaceGrid(serverOptions){
         request.makeAsyncRequest(requestOptions).then(
             response => {
                 console.log(response)
-                resolve(race.RaceGrid.fromJSON(response["RaceGrid"]))
+                resolve(race.RaceGrid.fromJSON(response["RaceGrid"]["Grid"]))
             }
         ).catch(
             error => {
@@ -63,14 +70,17 @@ function getRaceGrid(serverOptions){
     }) 
 
 }
-function getRaceResult(serverOptions){
+function getRaceResult(serverOptions, raceName){
 
     console.log(`Getting race from https://${serverOptions["hostname"]}:${serverOptions["port"]}${apiResources.raceResult}`)
 
+    let urlParameters = {}
+    urlParameters[apiResources.raceUrlParameter] = raceName
+
     let requestOptions = {
         hostname: serverOptions["hostname"],
         port: serverOptions["port"],
-        path: apiResources.raceResult,
+        path: request.buildPathWithParameters(apiResources.raceResult, urlParameters),
         agent: false,
         method: "GET",
         headers: {
@@ -83,7 +93,7 @@ function getRaceResult(serverOptions){
         request.makeAsyncRequest(requestOptions).then(
             response => {
                 console.log(response)
-                resolve(race.RaceResult.fromJSON(response["Positions"]))
+                resolve(race.RaceResult.fromJSON(response["Positions"]["Result"]))
             }
         ).catch(
             error => {
@@ -93,14 +103,17 @@ function getRaceResult(serverOptions){
     }) 
 
 }
-function getRaceFastlapDriver(serverOptions){
+function getRaceFastlapDriver(serverOptions, raceName){
 
     console.log(`Getting fast lap race from https://${serverOptions["hostname"]}:${serverOptions["port"]}${apiResources.raceFastLap}`)
+
+    let urlParameters = {}
+    urlParameters[apiResources.raceUrlParameter] = raceName
 
     let requestOptions = {
         hostname: serverOptions["hostname"],
         port: serverOptions["port"],
-        path: apiResources.raceFastLap,
+        path: request.buildPathWithParameters(apiResources.raceFastLap, urlParameters),
         agent: false,
         method: "GET",
         headers: {

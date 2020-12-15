@@ -10,16 +10,12 @@ class RaceGrid{
     static fromJSON(jsonRaceGrid){
         
         let grid = {}
-
-        if (jsonRaceGrid.hasOwnProperty('Grid')){
-            
-            Object.keys(jsonRaceGrid['Grid']).forEach(
-                key => {
-                    grid[key] = driver.Driver.fromJSON(jsonRaceGrid['Grid'][key])
-                }
-            )
-            
-        }
+       
+        Object.keys(jsonRaceGrid).forEach(
+            key => {
+                grid[key] = driver.Driver.fromJSON(jsonRaceGrid[key])
+            }
+        )
 
         return new RaceGrid(grid = grid)
     }
@@ -35,14 +31,11 @@ class RaceResult{
         
         let result = {}
 
-        if (jsonRaceResult.hasOwnProperty('Result')){
-
-            Object.keys(jsonRaceResult['Result']).forEach(
-                key => {
-                    result[key] = driver.Driver.fromJSON(jsonRaceResult['Result'][key])
-                }
-            )
-        }
+        Object.keys(jsonRaceResult).forEach(
+            key => {
+                result[key] = driver.Driver.fromJSON(jsonRaceResult[key])
+            }
+        )
 
         return new RaceResult(result = result)
     }

@@ -9,7 +9,7 @@ function execRaceCmd(discordClient, options){
     if (options.length == 1){
         console.log(`Obteniendo carrera ${options[0]}`)
 
-        apiManager.getRace().then(
+        apiManager.getRace(options[0]).then(
             race => {
                 console.log(race)
                 let raceTable = textBeautifier.raceToStringTable(race)
@@ -21,7 +21,7 @@ function execRaceCmd(discordClient, options){
 
     if (options.length == 2 && resultOption == options[1]){
         console.log(`Obteniendo carrera resultados de ${options[0]}`)
-        apiManager.getRaceResult().then(
+        apiManager.getRaceResult(options[0]).then(
             raceResult => {
                 console.log(raceResult)
                 let raceResultTable = textBeautifier.raceResultToStringTable(raceResult)
@@ -33,7 +33,7 @@ function execRaceCmd(discordClient, options){
 
     if (options.length == 2 && gridStartOption == options[1]){
         console.log(`Obteniendo carrera salida de ${options[0]}`)
-        apiManager.getRaceGrid().then(
+        apiManager.getRaceGrid(options[0]).then(
             raceGrid => {
                 console.log(raceGrid)
                 let raceGridTable = textBeautifier.raceGridToStringTable(raceGrid)
@@ -45,7 +45,7 @@ function execRaceCmd(discordClient, options){
 
     if (options.length == 2 && fastLapOption == options[1]){
         console.log(`Obteniendo carrera vuelta rapida ${options[0]}`)
-        apiManager.getRaceFastlapDriver().then(
+        apiManager.getRaceFastlapDriver(options[0]).then(
             raceFastLapDriver => {
                 console.log(raceFastLapDriver)
                 let raceFastLapDriverTable = textBeautifier.raceFastLapToStringTable(raceFastLapDriver)
