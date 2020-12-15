@@ -29,7 +29,7 @@ func RaceInfoHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payload[response.RaceInfoKey] = race
+	payload[response.RaceInfoKey] = *race
 
 	content, err := json.Marshal(payload)
 
@@ -41,7 +41,7 @@ func RaceInfoHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceInfo(raceI interfaces.RaceI, raceName string) (model.Race, error) {
+func getRaceInfo(raceI interfaces.RaceI, raceName string) (*model.Race, error) {
 	return raceI.GetRaceInfo(raceName)
 }
 
@@ -65,7 +65,7 @@ func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payload[response.RaceGridKey] = raceGrid
+	payload[response.RaceGridKey] = *raceGrid
 
 	content, err := json.Marshal(payload)
 
@@ -77,7 +77,7 @@ func RaceGridHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceGrid(raceI interfaces.RaceI, raceName string) (model.RaceGrid, error) {
+func getRaceGrid(raceI interfaces.RaceI, raceName string) (*model.RaceGrid, error) {
 	return raceI.GetRaceGrid(raceName)
 }
 
@@ -101,7 +101,7 @@ func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payload[response.PositionsKey] = raceResult
+	payload[response.PositionsKey] = *raceResult
 
 	content, err := json.Marshal(payload)
 
@@ -113,7 +113,7 @@ func RaceResultHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceResult(raceI interfaces.RaceI, raceName string) (model.RaceResult, error) {
+func getRaceResult(raceI interfaces.RaceI, raceName string) (*model.RaceResult, error) {
 	return raceI.GetRaceResult(raceName)
 }
 
@@ -137,7 +137,7 @@ func RaceFastLapDriverHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payload[response.RaceFastLapDriverKey] = fastLapDriver
+	payload[response.RaceFastLapDriverKey] = *fastLapDriver
 
 	content, err := json.Marshal(payload)
 
@@ -149,6 +149,6 @@ func RaceFastLapDriverHandler(w http.ResponseWriter, r *http.Request) {
 	SendResponse(w, content)
 }
 
-func getRaceFastLapDriver(raceI interfaces.RaceI, raceName string) (model.Driver, error) {
+func getRaceFastLapDriver(raceI interfaces.RaceI, raceName string) (*model.Driver, error) {
 	return raceI.GetRaceFastLapDriver(raceName)
 }

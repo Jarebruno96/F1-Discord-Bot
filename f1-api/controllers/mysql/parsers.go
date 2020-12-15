@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"database/sql"
+	"errors"
 	"f1-api/model"
 	"log"
 )
@@ -195,18 +196,21 @@ func ParseRowsToTeamsInfo(rows *sql.Rows) ([]model.Team, error) {
 	return teams, nil
 }
 
-func ParseRowsToRaceInfo(rows *sql.Rows) (model.Race, error) {
+func ParseRowsToRaceInfo(rows *sql.Rows) (*model.Race, error) {
 
-	race := model.Race{
-		Grid: &model.RaceGrid{
-			Grid: map[string]model.Driver{},
-		},
-		Result: &model.RaceResult{
-			Result: map[string]model.Driver{},
-		},
+	race := model.Race{}
+	race.RaceGrid = &model.RaceGrid{
+		Grid: map[string]model.Driver{},
+	}
+	race.RaceResult = &model.RaceResult{
+		Result: map[string]model.Driver{},
 	}
 
+	ok := false
+
 	for rows.Next() {
+
+		ok = true
 
 		var gridPosition string
 		var resultPosition string
@@ -221,8 +225,8 @@ func ParseRowsToRaceInfo(rows *sql.Rows) (model.Race, error) {
 			continue
 		}
 
-		race.Grid.Grid[gridPosition] = driver
-		race.Result.Result[resultPosition] = driver
+		race.RaceGrid.Grid[gridPosition] = driver
+		race.RaceResult.Result[resultPosition] = driver
 
 		if isFastDriver {
 			race.FastLapDriver = &driver
@@ -230,16 +234,24 @@ func ParseRowsToRaceInfo(rows *sql.Rows) (model.Race, error) {
 
 	}
 
-	return race, nil
+	if !ok {
+		return nil, errors.New("Can not get info for race")
+	}
+
+	return &race, nil
 }
 
-func ParseRowsToRaceGrid(rows *sql.Rows) (model.RaceGrid, error) {
+func ParseRowsToRaceGrid(rows *sql.Rows) (*model.RaceGrid, error) {
 
 	grid := model.RaceGrid{
 		Grid: make(map[string]model.Driver),
 	}
 
+	ok := false
+
 	for rows.Next() {
+
+		ok = true
 
 		var driver model.Driver
 		var position string
@@ -256,15 +268,24 @@ func ParseRowsToRaceGrid(rows *sql.Rows) (model.RaceGrid, error) {
 
 	}
 
-	return grid, nil
+	if !ok {
+		return nil, errors.New("Can not get grid for race")
+	}
+
+	return &grid, nil
 }
 
-func ParseRowsToRaceResult(rows *sql.Rows) (model.RaceResult, error) {
+func ParseRowsToRaceResult(rows *sql.Rows) (*model.RaceResult, error) {
+
 	result := model.RaceResult{
 		Result: make(map[string]model.Driver),
 	}
 
+	ok := false
+
 	for rows.Next() {
+
+		ok = true
 
 		var driver model.Driver
 		var position string
@@ -281,14 +302,22 @@ func ParseRowsToRaceResult(rows *sql.Rows) (model.RaceResult, error) {
 
 	}
 
-	return result, nil
+	if !ok {
+		return nil, errors.New("Can not get result for race")
+	}
+
+	return &result, nil
 }
 
-func ParseRowsToRaceFastLapDriver(rows *sql.Rows) (model.Driver, error) {
+func ParseRowsToRaceFastLapDriver(rows *sql.Rows) (*model.Driver, error) {
 
 	var driver model.Driver
 
+	ok := false
+
 	for rows.Next() {
+
+		ok = true
 
 		var circuit string
 		err := rows.Scan(&circuit, &driver.Name, &driver.Number)
@@ -299,7 +328,11 @@ func ParseRowsToRaceFastLapDriver(rows *sql.Rows) (model.Driver, error) {
 		}
 	}
 
-	return driver, nil
+	if !ok {
+		return nil, errors.New("Can not get fast lap driver for race")
+	}
+
+	return &driver, nil
 }
 
 func ParseRowsToFastLapsDrivers(rows *sql.Rows) ([]model.FastLap, error) {

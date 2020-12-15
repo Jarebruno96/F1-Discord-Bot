@@ -12,7 +12,7 @@ type RaceResult struct {
 
 //Race :
 type Race struct {
-	Grid          *RaceGrid   `json:"Grid,omitempty"`
-	Result        *RaceResult `json:"Result,omitempty"`
-	FastLapDriver *Driver     `json:"FastLapDriver,omitempty"`
+	*RaceGrid     `json:",omitempty"`
+	*RaceResult   `json:",omitempty"`
+	FastLapDriver *Driver `json:"FastLapDriver,omitempty"`
 }
