@@ -1,49 +1,43 @@
-const table = require("table")
+const table = require('table')
 
 
 function driverClassificationToStringTable(driversClassificationPositions){
 
     let taleConfig = {
-        border : table.getBorderCharacters("void"),
+        border : table.getBorderCharacters('void'),
         drawHorizontalLine: (index, size) => {
-            return index === 0 || index === 1 || index === size;
+            return index === 0 || index === 1 || index === size
           }
     }
     let elements = [
-        ["Piloto", "Puntos"]
+        ['Piloto', 'Puntos']
     ]
 
     driversClassificationPositions.forEach(driverClassificationPosition => {
         elements.push([driverClassificationPosition.name, driverClassificationPosition.points])
-    });
+    })
 
-    let a = table.table(elements, taleConfig)
-
-    return '`'+a+'`'
-
+    return '`'+table.table(elements, taleConfig)+'`'
 }
 
 
 function teamsClassificationToStringTable(teamsClassificationPositions){
 
     let taleConfig = {
-        border : table.getBorderCharacters("void"),
+        border : table.getBorderCharacters('void'),
         drawHorizontalLine: (index, size) => {
-            return index === 0 || index === 1 || index === size;
+            return index === 0 || index === 1 || index === size
           }
     }
     let elements = [
-        ["Escuderia", "Puntos"]
+        ['Escudería', 'Puntos']
     ]
 
     teamsClassificationPositions.forEach(teamClassificationPosition => {
         elements.push([teamClassificationPosition.name, teamClassificationPosition.points])
-    });
+    })
 
-    let a = table.table(elements, taleConfig)
-
-    return '`'+a+'`'
-
+    return '`'+table.table(elements, taleConfig)+'`'
 }
 
 module.exports = {
