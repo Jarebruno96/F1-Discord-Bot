@@ -1,16 +1,19 @@
-const apiManager = require("./../api-manager")
-const textBeautifier = require("./../text-beautifier")
+const apiManager = require('./../api-manager')
+const textBeautifier = require('./../text-beautifier')
 
 
 function execCircuitCmd(discordClient){
 
+    console.log(`Getting circuits info`)
+
     apiManager.getCircuitsInfo().then(
         circuitsInfo => {
-            console.log(circuitsInfo)
-            let stringTable = textBeautifier.circuitsToStringTable(circuitsInfo)
-            console.log(stringTable)
+
+            console.log(`Success getting circuits: ${circuitsInfo}`)
+            let circuitsTable = textBeautifier.circuitsToStringTable(circuitsInfo)
             
-            discordClient.sendMessage(discordClient.channelID, stringTable)
+            console.log(`Sending circtuits to discord channel ${circuitsTable}`)
+            discordClient.sendMessage(discordClient.channelID, circuitsTable)
         } 
     ).catch(
         error => {

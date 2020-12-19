@@ -1,9 +1,10 @@
-const drivers = require("../api-manager/drivers")
-const driver = require("./driver")
+const drivers = require('../api-manager/drivers')
+const driver = require('./driver')
 
 class RaceGrid{
 
     constructor(grid = {}){
+        
         this.grid = grid
     }
 
@@ -24,6 +25,7 @@ class RaceGrid{
 class RaceResult{
 
     constructor(result = {}){
+
         this.result = result
     }
 
@@ -44,6 +46,7 @@ class RaceResult{
 class Race{
 
     constructor(grid = null, result = null, raceFastDriver = null){
+
         this.grid = grid
         this.result = result
         this.raceFastDriver = raceFastDriver
@@ -55,20 +58,19 @@ class Race{
         let result = null
         let raceFastDriver = null
 
-        if(jsonRace.hasOwnProperty("Grid")){
-            grid = RaceGrid.fromJSON(jsonRace["Grid"])
+        if(jsonRace.hasOwnProperty('Grid')){
+            grid = RaceGrid.fromJSON(jsonRace['Grid'])
         }
-        if(jsonRace.hasOwnProperty("Result")){
-            result = RaceResult.fromJSON(jsonRace["Result"])
+        if(jsonRace.hasOwnProperty('Result')){
+            result = RaceResult.fromJSON(jsonRace['Result'])
         }
-        if(jsonRace.hasOwnProperty("FastLapDriver")){
-            raceFastDriver = driver.Driver.fromJSON(jsonRace["FastLapDriver"])
+        if(jsonRace.hasOwnProperty('FastLapDriver')){
+            raceFastDriver = driver.Driver.fromJSON(jsonRace['FastLapDriver'])
         }
 
         return new Race(grid = grid, result = result, raceFastDriver = raceFastDriver)
     }
 }
-
 
 module.exports = {
     RaceGrid: RaceGrid,

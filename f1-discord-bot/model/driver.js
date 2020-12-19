@@ -1,6 +1,7 @@
 class Driver{
 
-    constructor(name = "", number = ""){
+    constructor(name = '', number = ''){
+        
         this.name = name
         this.number = number
     }

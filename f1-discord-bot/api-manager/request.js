@@ -3,18 +3,17 @@ const http = require('http')
 async function makeAsyncRequest(requestOptions){
 
     return await new Promise((resolve, reject) => {
-
         const req = http.request(requestOptions, (res) => {
             
-            let response = '' 
-            res.setEncoding('utf8');
+            let response = ''
+            res.setEncoding('utf8')
 
             res.on('data', (chunk) => {
                 response += chunk
             })
 
             res.on('end', () => {
-                resolve(JSON.parse(response));
+                resolve(JSON.parse(response))
             })
 
         })
@@ -24,27 +23,27 @@ async function makeAsyncRequest(requestOptions){
         })
 
         req.end()
-
     })
 }
 
+
 function buildPathWithParameters(basePath, parameters = {}){
     
-    let urlParamerts = ""
+    let urlParameters = ''
     let first = true
 
     for(let key in parameters){
+
         if(first){
             first = false
-            urlParamerts += ("?"+key+"="+parameters[key])
+            urlParameters += ('?'+key+'='+parameters[key])
             continue
         }
         
-        urlParamerts += (key+"="+parameters[key])
-        
+        urlParameters += (key+'='+parameters[key])
     }
 
-    return basePath + urlParamerts
+    return basePath + urlParameters
 }
 
 module.exports = {

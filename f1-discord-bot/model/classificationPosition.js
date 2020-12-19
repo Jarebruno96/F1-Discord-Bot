@@ -1,13 +1,14 @@
 class ClassificationPosition{
 
-    constructor(name = "", points = 0){
+    constructor(name = '', points = 0){
+        
         this.name = name
         this.points = points
     }
 
     static fromJSON(jsonClassificationPosition){
         
-        let name = ""
+        let name = ''
         let points = 0
 
         if (jsonClassificationPosition.hasOwnProperty('Name')){

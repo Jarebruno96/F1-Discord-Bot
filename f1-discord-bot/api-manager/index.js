@@ -1,21 +1,21 @@
-const fs = require("fs")
+const fs = require('fs')
 
-const circuitsManager = require("./circuits.js")
-const classificationManager = require("./classification.js")
-const pointsManager = require("./points.js")
-const calendarManager = require("./calendar.js")
-const teamsManager = require("./teams.js")
-const driversManager = require("./drivers.js")
-const fastlapManager = require("./fastlaps.js")
-const raceManager = require("./race.js")
+const circuitsManager = require('./circuits.js')
+const classificationManager = require('./classification.js')
+const pointsManager = require('./points.js')
+const calendarManager = require('./calendar.js')
+const teamsManager = require('./teams.js')
+const driversManager = require('./drivers.js')
+const fastlapManager = require('./fastlaps.js')
+const raceManager = require('./race.js')
 
 const options = loadApiServerInfo()
 
 function loadApiServerInfo(){
     
-    let serverInfoFile = "./api-manager/apiserver-config.json"
-    let rawData = fs.readFileSync(serverInfoFile);
-    return  JSON.parse(rawData);
+    let serverInfoFile = './api-manager/apiserver-config.json'
+    let rawData = fs.readFileSync(serverInfoFile)
+    return  JSON.parse(rawData)
 }
 
 function getCircuitsInfo(){

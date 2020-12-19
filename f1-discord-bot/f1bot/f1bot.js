@@ -1,22 +1,20 @@
-'use strict';
-
-const fs = require('fs');
+const fs = require('fs')
 const discordClient = require('./discordclient.js')
 
 class F1Bot{
 
     constructor(){
 
-        let botOptionsFile = './f1bot/f1bot-config.json';
-        let rawData = fs.readFileSync(botOptionsFile);
-        this.options = JSON.parse(rawData);
+        let botOptionsFile = './f1bot/f1bot-config.json'
+        let rawData = fs.readFileSync(botOptionsFile)
+        this.options = JSON.parse(rawData)
 
-        this.client = new discordClient.DiscordClient(this.options);
+        this.client = new discordClient.DiscordClient(this.options)
 
     }
 
     init(){
-        this.client.login();
+        this.client.login()
     }
 
     close(){
@@ -24,7 +22,6 @@ class F1Bot{
             () => this.client.destroy()
         )
     }
-
 }
 
 module.exports = {

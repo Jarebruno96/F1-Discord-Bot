@@ -1,10 +1,11 @@
-const circuit = require("./circuit.js")
-const team = require("./team.js")
-const driver = require("./driver.js")
+const circuit = require('./circuit.js')
+const team = require('./team.js')
+const driver = require('./driver.js')
 
 class FastLap{
 
     constructor(fastlapDriver = null, fastlapCircuit = null, fastlapTeam = null){
+        
         this.driver = fastlapDriver
         this.team = fastlapTeam
         this.circuit = fastlapCircuit
@@ -29,7 +30,6 @@ class FastLap{
         }
 
         return new FastLap(fastlapDriver = fastlapDriver, fastlapCircuit = fastlapCircuit, fastlapTeam = fastlapTeam)
-
     }
 }
 
