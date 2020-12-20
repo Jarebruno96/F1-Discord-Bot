@@ -1,21 +1,21 @@
-const fs = require("fs")
+const fs = require('fs')
 
-const circuitsManager = require("./circuits.js")
-const classificationManager = require("./classification.js")
-const pointsManager = require("./points.js")
-const calendarManager = require("./calendar.js")
-const teamsManager = require("./teams.js")
-const driversManager = require("./drivers.js")
-const fastlapManager = require("./fastlaps.js")
-const raceManager = require("./race.js")
+const circuitsManager = require('./circuits.js')
+const classificationManager = require('./classification.js')
+const pointsManager = require('./points.js')
+const calendarManager = require('./calendar.js')
+const teamsManager = require('./teams.js')
+const driversManager = require('./drivers.js')
+const fastlapManager = require('./fastlaps.js')
+const raceManager = require('./race.js')
 
 const options = loadApiServerInfo()
 
 function loadApiServerInfo(){
     
-    let serverInfoFile = "./api-manager/apiserver-config.json"
-    let rawData = fs.readFileSync(serverInfoFile);
-    return  JSON.parse(rawData);
+    let serverInfoFile = './api-manager/apiserver-config.json'
+    let rawData = fs.readFileSync(serverInfoFile)
+    return  JSON.parse(rawData)
 }
 
 function getCircuitsInfo(){
@@ -62,20 +62,20 @@ function getTeamsFastlaps(){
     return fastlapManager.getTeamsFastlaps(options)
 }
 
-function getRace(){
-    return raceManager.getRace(options)
+function getRace(raceName){
+    return raceManager.getRace(options, raceName)
 }
 
-function getRaceGrid(){
-    return raceManager.getRaceGrid(options)
+function getRaceGrid(raceName){
+    return raceManager.getRaceGrid(options, raceName)
 }
 
-function getRaceResult(){
-    return raceManager.getRaceResult(options)
+function getRaceResult(raceName){
+    return raceManager.getRaceResult(options, raceName)
 }
 
-function getRaceFastlapDriver(){
-    return raceManager.getRaceFastlapDriver(options)
+function getRaceFastlapDriver(raceName){
+    return raceManager.getRaceFastlapDriver(options, raceName)
 }
 
 module.exports = {

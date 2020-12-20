@@ -1,16 +1,17 @@
-const table = require("table")
+const table = require('table')
 
 
 function raceToStringTable(race){
 
     let taleConfig = {
-        border : table.getBorderCharacters("void"),
+        border : table.getBorderCharacters('void'),
         drawHorizontalLine: (index, size) => {
-            return index === 0 || index === 1 || index === size;
+            return index === 0 || index === 1 || index === size
           }
     }
+
     let elements = [
-        ["Piloto", "Posicion llegada", "Posicion salida", "Vuelta Rápida"]
+        ['Piloto', 'Posicion llegada', 'Posicion salida', 'Vuelta Rápida']
     ]
 
     let driverStartsPositions = {}
@@ -20,32 +21,29 @@ function raceToStringTable(race){
         }
     )
 
-    console.log(driverStartsPositions)
-
     Object.keys(race.result.result).forEach(
         position => {
             let driverName = race.result.result[position].name
-            let isFastLapDriver = race.raceFastDriver.name == driverName? "Sí" : "No"
+            let isFastLapDriver = race.raceFastDriver.name == driverName? 'Sí' : 'No'
             elements.push([driverName, position, driverStartsPositions[driverName], isFastLapDriver])
         }
     )
 
-    let a = table.table(elements, taleConfig)
-
-    return '`'+a+'`'
-
+    return '`'+table.table(elements, taleConfig)+'`'
 }
+
 
 function raceResultToStringTable(raceResult){
 
     let taleConfig = {
-        border : table.getBorderCharacters("void"),
+        border : table.getBorderCharacters('void'),
         drawHorizontalLine: (index, size) => {
-            return index === 0 || index === 1 || index === size;
+            return index === 0 || index === 1 || index === size
           }
     }
+    
     let elements = [
-        ["Piloto", "Posición llegada"]
+        ['Piloto', 'Posición llegada']
     ]
 
     Object.keys(raceResult.result).forEach(
@@ -55,23 +53,21 @@ function raceResultToStringTable(raceResult){
         }
     )
 
-    let a = table.table(elements, taleConfig)
-
-    return '`'+a+'`'
-
+    return '`'+table.table(elements, taleConfig)+'`'
 }
 
 
 function raceGridToStringTable(raceGrid){
 
     let taleConfig = {
-        border : table.getBorderCharacters("void"),
+        border : table.getBorderCharacters('void'),
         drawHorizontalLine: (index, size) => {
-            return index === 0 || index === 1 || index === size;
+            return index === 0 || index === 1 || index === size
           }
     }
+
     let elements = [
-        ["Piloto", "Posicion salida"]
+        ['Piloto', 'Posicion salida']
     ]
 
     Object.keys(raceGrid.grid).forEach(
@@ -81,28 +77,24 @@ function raceGridToStringTable(raceGrid){
         }
     )
 
-    let a = table.table(elements, taleConfig)
-
-    return '`'+a+'`'
-
+    return '`'+table.table(elements, taleConfig)+'`'
 }
 
 
 function raceFastLapToStringTable(raceFastLapDriver){
 
     let taleConfig = {
-        border : table.getBorderCharacters("void"),
+        border : table.getBorderCharacters('void'),
         drawHorizontalLine: (index, size) => {
-            return index === 0 || index === 1 || index === size;
+            return index === 0 || index === 1 || index === size
           }
     }
+
     let elements = [
-        ["Piloto"], [raceFastLapDriver.name]
+        ['Piloto'], [raceFastLapDriver.name]
     ]
 
-    let a = table.table(elements, taleConfig)
-
-    return '`'+a+'`'
+    return '`'+table.table(elements, taleConfig)+'`'
 }
 
 module.exports = {

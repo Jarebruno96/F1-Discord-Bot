@@ -1,6 +1,7 @@
 class Circuit{
 
-    constructor(name = "", distance = -1, country = "", turns = -1){
+    constructor(name = '', distance = -1, country = '', turns = -1){
+        
         this.name = name
         this.distance = distance
         this.country = country
@@ -9,10 +10,10 @@ class Circuit{
 
     static fromJSON(jsonCircuit){
         
-        let name = ""
-        let distance = ""
-        let country = ""
-        let turns = ""
+        let name = ''
+        let distance = ''
+        let country = ''
+        let turns = ''
 
         if (jsonCircuit.hasOwnProperty('Name')){
             name = jsonCircuit['Name']

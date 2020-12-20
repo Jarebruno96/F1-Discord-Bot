@@ -1,7 +1,8 @@
-const driver = require("./driver.js")
+const driver = require('./driver.js')
 class Team{
 
-    constructor(name = "", color = "", drivers = []){
+    constructor(name = '', color = '', drivers = []){
+
         this.name = name
         this.color = color
         this.drivers = drivers
@@ -9,8 +10,8 @@ class Team{
 
     static fromJSON(jsonTeam){
 
-        let name = ""
-        let color = ""
+        let name = ''
+        let color = ''
         let drivers = []
 
         if (jsonTeam.hasOwnProperty('Name')){
@@ -31,7 +32,7 @@ class Team{
                 })
             }
         }
-
+        
         return new Team(name = name, color = color, drivers = drivers)
     }
 }

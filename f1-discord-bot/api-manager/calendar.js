@@ -17,7 +17,6 @@ function getCalendar(serverOptions){
         }
     }
 
-    //return request.makeAsyncRequest(requestOptions)
     return new Promise((resolve, reject) => {
         request.makeAsyncRequest(requestOptions).then(
             response => {

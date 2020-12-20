@@ -1,11 +1,14 @@
 class Calendar{
-    constructor(season = "", events = [] ){
+
+    constructor(season = '', events = [] ){
+
         this.season = season
         this.events = events
     }
 
     static fromJSON(jsonCalendar){
-        let season = ""
+
+        let season = ''
         let events = []
 
         if (jsonCalendar.hasOwnProperty('Season')){
@@ -18,26 +21,26 @@ class Calendar{
 
             jsonEvents.forEach(jsonEvent => {
                 events.push(Event.fromJSON(jsonEvent))
-            });
+            })
         }
 
         return new Calendar(season = season, events = events)
-
     }
 }
 
 
 class Event{
 
-    constructor(day = "", circuit = ""){
+    constructor(day = '', circuit = ''){
+        
         this.day = day
         this.circuit = circuit
     }
 
     static fromJSON(jsonEvent){
 
-        let day = ""
-        let circuit = ""
+        let day = ''
+        let circuit = ''
 
         if (jsonEvent.hasOwnProperty('Day')){
             day = jsonEvent['Day']

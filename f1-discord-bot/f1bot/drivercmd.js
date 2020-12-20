@@ -1,9 +1,11 @@
-const apiManager = require("../api-manager")
-const textBeautifier = require("../text-beautifier")
+const apiManager = require('../api-manager')
+const textBeautifier = require('../text-beautifier')
 
 
 function execDriversCmd(discordClient){
 
+    console.log(`Getting list of drivers`)
+    
     apiManager.getDrivers().then(
         drivers => {
             console.log(drivers)
