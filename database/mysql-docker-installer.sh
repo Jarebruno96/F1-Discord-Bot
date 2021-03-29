@@ -24,8 +24,8 @@ echo "Installing docker"
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 echo "Adding current user to docker group"
-#sudo groupadd docker
-sudo usermod -a -G docker $USER
+sudo groupadd docker
+sudo gpasswd -a $USER docker
 #newgrp docker
 
 echo "Installing mysql/mysql-server:5.7 docker image"
