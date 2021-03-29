@@ -1,4 +1,4 @@
-CONTAINER_NAME=f1-myslq
+CONTAINER_NAME=f1-mysql
 
 echo "Installing mysql/mysql-server:5.7 docker image"
 docker pull mysql/mysql-server:5.7
