@@ -12,5 +12,7 @@ docker cp schema.sql $CONTAINER_NAME:/docker-entrypoint-initdb.d/
 echo "Starting ${CONTAINER_NAME} container"
 docker start $CONTAINER_NAME
 
+sleep 1
+docker logs $CONTAINER_NAME
 echo "Saving logs into ${CONTAINER_NAME}-docker.log"
 docker logs $CONTAINER_NAME >> $CONTAINER_NAME-docker.log
