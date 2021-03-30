@@ -15,7 +15,7 @@ function execDriversCmd(discordClient){
         } 
     ).catch(
         error => {
-            console.log(`Error: Can not get circuits info ${error}`)
+            console.log(`Error: Can not get drivers info ${error}`)
         }
     )
 }

@@ -37,7 +37,6 @@ class DiscordClient extends discord.Client{
     logout(){
 
         console.log('Closing bot')
-
         return this.sendMessage(this.channelID, this.messages['bye1'])
     }
 
@@ -56,6 +55,14 @@ class DiscordClient extends discord.Client{
         return channel.send(message)
     }
 
+    sendFiles(channelID, message, fileNames){
+
+        console.log(`Bot sending file ${fileNames} to ${channelID} with message: ${message}`)
+
+        let channel = this.channels.cache.get(channelID)
+        return channel.send(message, {files: fileNames})
+    }
+
     listenToMessages(message){
         
         console.log(`Message received at channel ${message.channel.name} from ${message.author.username} with content ${message.content}`)
@@ -64,8 +71,7 @@ class DiscordClient extends discord.Client{
         let command = args.shift()
 
         if (botCmds.isBotCommand(command)){
-            console.log(`${message.channel.name} is executing ${command}`)
-            botCmds.execCommand(command, args, this)
+            botCmds.execCommand(command, args, message.member, this)
         }
     }
 }

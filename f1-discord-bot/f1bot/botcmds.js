@@ -1,3 +1,4 @@
+const rolesManager = require('./role.js')
 const circuitCmdManager = require('./circuitcmd.js')
 const classificationCmdManager = require('./classificationcmd.js')
 const pointsCmdManager = require('./pointscmd.js')
@@ -6,6 +7,7 @@ const teamsCmdManager = require('./teamscmd.js')
 const driversCmdManager = require('./drivercmd.js')
 const fastlapsCmdManager = require('./fastlapcmd.js')
 const raceCmdManager = require('./racecmd.js')
+const introCmdManager = require('./intro.js')
 
 const driversCmd = '/pilotos'
 const circuitsCmd = '/circuitos'
@@ -15,7 +17,7 @@ const calendarCmd = '/calendario'
 const teamsCmd = '/equipos'
 const fastlapsCmd = '/vueltarapida'
 const raceCmd = '/carrera'
-
+const introCmd = '/intro'
 
 function isBotCommand(command){
 
@@ -27,14 +29,34 @@ function isBotCommand(command){
         calendarCmd,
         teamsCmd,
         fastlapsCmd,
-        raceCmd
+        raceCmd,
+        introCmd
     ]
 
     return commands.includes(command)
 
 }
 
-function execCommand(command, args, discordClient){
+function isAllowedToExec(command, member){
+
+    let permissions = {}
+    permissions[introCmd] = [rolesManager.caster]
+
+    console.log(permissions)
+    console.log(command)
+
+    for(let memberRole of member.roles.cache){
+        
+        let role = memberRole[1]
+        if (permissions[command].includes(role.name)){
+            return true
+        }
+    }
+
+    return false
+}
+
+function execCommand(command, args, member, discordClient){
 
     switch (command) {
         case driversCmd:
@@ -68,6 +90,16 @@ function execCommand(command, args, discordClient){
         case raceCmd:
             console.log(`Executing ${raceCmd}`)
             raceCmdManager.execRaceCmd(discordClient, args)
+        break
+        case introCmd:
+            if(!isAllowedToExec(command, member)){
+                console.log(`${member.user.username} tried to exec ${introCmd} at it is not allowed`)
+                discordClient.sendMessage(discordClient.channelID, 'Solo los comentaristas pueden hacer la intro')
+                
+            }else{
+                console.log(`${member.user.username} executing ${introCmd}`)
+                introCmdManager.execIntroCmd(discordClient, member, args)
+            }
         break
         default:
             console.log(`Unknow command ${cmd}`)
