@@ -27,7 +27,7 @@ ENV GOTRACEBACK=single
 # Copy template & assets
 WORKDIR /f1-api
 COPY --from=build /app ./app
-#COPY index.html index.html
-#COPY assets assets/
+COPY controllers/mysql/config/config.json ./controllers/mysql/config/config.json
+COPY controllers/mysql/queries/ ./controllers/mysql/queries/
 
 ENTRYPOINT ["./app"]
