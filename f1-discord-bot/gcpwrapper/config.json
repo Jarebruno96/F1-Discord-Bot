@@ -1,0 +1,10 @@
+{
+    "CloudStorage" : {
+        "GCPAccountKey" : "",
+        "BucketName" : "",
+        "IntrosFolderName" : "intros",
+        "ImagesFolderName" : "images",
+        "DriversFolderName" : "drivers",
+        "ProfileFolderName" : "profile"  
+    }
+} 
