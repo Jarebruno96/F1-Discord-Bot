@@ -13,7 +13,7 @@ function loadCloudStorageOptions(){
 }
 
 function getIntroFileName(raceName){
-    return 'Intro-australia.mp3'
+    return 'Intro-' + raceName.toLowerCase() +'.mp3'
 }
 
 function buildIntroGCPStorageURI(fileName){
