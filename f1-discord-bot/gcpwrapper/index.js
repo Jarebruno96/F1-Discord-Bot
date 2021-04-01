@@ -21,7 +21,7 @@ function buildIntroGCPStorageURI(fileName){
 }
 
 function getProfilePhotoFileName(driverName){
-    return driverName.toLowerCase() + "_profile.png"
+    return driverName.toLowerCase() + "_profile.jpg"
 }
 
 function buildProfileDriverPhotoGCPStorageURI(fileName){

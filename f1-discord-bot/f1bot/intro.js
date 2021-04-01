@@ -10,7 +10,7 @@ function execIntroCmd(discordClient, member, options){
 
     if (options.length == 1){
 
-        let introFileName = gcpWrapper.getIntroFileName()
+        let introFileName = gcpWrapper.getIntroFileName(options[0])
         console.log("El fichero de intro es: "+ introFileName)
 
         gcpWrapper.downloadIntro(introFileName).then( 
