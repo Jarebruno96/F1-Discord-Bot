@@ -1,9 +1,10 @@
-const http = require('http')
+//Replace https package for http if hostname requires it
+const https = require('https')
 
 async function makeAsyncRequest(requestOptions){
 
     return await new Promise((resolve, reject) => {
-        const req = http.request(requestOptions, (res) => {
+        const req = https.request(requestOptions, (res) => {
             
             let response = ''
             res.setEncoding('utf8')
