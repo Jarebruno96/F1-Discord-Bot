@@ -3,7 +3,7 @@ const sendDriverImageMillisecondsDelay  = sendDriverImageSecondsDelay * 1000
 
 const gcpWrapper = require('../gcpwrapper')
 const path = require('path')
-const downloadsFolder = path.join(__dirname, '..')
+const downloadsFolder = path.join(__dirname, '../downloads')
 const apiManager = require('../api-manager')
 
 function execIntroCmd(discordClient, member, options){

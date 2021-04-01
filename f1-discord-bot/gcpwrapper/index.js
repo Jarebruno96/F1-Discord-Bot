@@ -4,6 +4,7 @@ const storage = require('./storage/storage.js')
 
 const cwd = path.join(__dirname, '.')
 const cloudStorageOptions = loadCloudStorageOptions()
+const downloadsFolder = "downloads"
 
 function loadCloudStorageOptions(){
 
@@ -33,14 +34,14 @@ function downloadIntro(fileName){
 
     let cloudStorageClient = storage.initStorageClient(cloudStorageOptions)
     let introObjectURI = buildIntroGCPStorageURI(fileName)
-    return storage.downloadFileFromBucket(cloudStorageClient, cloudStorageOptions['BucketName'], fileName, introObjectURI)
+    return storage.downloadFileFromBucket(cloudStorageClient, cloudStorageOptions['BucketName'], path.join(downloadsFolder,fileName), introObjectURI)
 }
 
 function downloadProfileDriverPhoto(fileName){
 
     let cloudStorageClient = storage.initStorageClient(cloudStorageOptions)
     let profilePhotoObjectURI = buildProfileDriverPhotoGCPStorageURI(fileName)
-    return storage.downloadFileFromBucket(cloudStorageClient, cloudStorageOptions['BucketName'], fileName, profilePhotoObjectURI)
+    return storage.downloadFileFromBucket(cloudStorageClient, cloudStorageOptions['BucketName'], path.join(downloadsFolder,fileName), profilePhotoObjectURI)
 }
 
 
