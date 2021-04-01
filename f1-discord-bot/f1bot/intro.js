@@ -27,7 +27,7 @@ function execIntroCmd(discordClient, member, options){
 
         ).catch(
             error =>{
-                console.log("El fichero de intse ha descargado KO. ", + error)
+                console.log("El fichero de intro se ha descargado KO. ", + error)
             }
         )
 
@@ -48,7 +48,7 @@ function startRaceIntro(discordClient, member, introFile){
             const dispatcher = connection.play(path.join(downloadsFolder, introFile))
     
             dispatcher.on('start', () => {
-                dispatcher.setVolume(0.70)
+                dispatcher.setVolume(0.90)
                 console.log("Playing")
             }) 
     
