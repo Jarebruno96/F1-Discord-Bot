@@ -21,7 +21,7 @@ echo "Updating packages"
 sudo apt update
 
 echo "Installing docker"
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
 echo "Adding current user to docker group"
 sudo groupadd docker
