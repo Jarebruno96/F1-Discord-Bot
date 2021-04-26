@@ -1,0 +1,13 @@
+version: "3.0"
+services: 
+  f1-mysql-db:
+    build: .
+    restart: unless-stopped
+    environment:
+      MYSQL_RANDOM: 123
+      MYSQL_USER: f1-user
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: f1
+    ports:
+      - 3306:3306
+    container_name: f1-mysql-db
