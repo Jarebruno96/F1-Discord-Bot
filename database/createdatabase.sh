@@ -1,1 +1,0 @@
-docker exec -i mysql1 mysql --default-character-set=utf8 -u root < schema.sql
